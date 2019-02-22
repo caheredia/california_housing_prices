@@ -56,13 +56,14 @@ dependencies:
   - absl-py=0.4.1=py35_0
   - astor=0.7.1=py35_0
   - blas=1.0=mkl
-  - ca-certificates=2018.12.5=0
+  - ca-certificates=2019.1.23=0
   - certifi=2018.8.24=py35_1
   - cycler=0.10.0=py35hb89929e_0
   - freetype=2.9.1=hb4e5f40_0
   - gast=0.2.0=py35_0
   - grpcio=1.12.1=py35hd9629dc_0
   - intel-openmp=2019.1=144
+  - ipywidgets=7.4.1=py35_0
   - kiwisolver=1.0.1=py35h219a9d8_0
   - libcxx=4.0.1=hcfea43d_1
   - libcxxabi=4.0.1=hcfea43d_1
@@ -101,6 +102,7 @@ dependencies:
   - tornado=5.1.1=py35h1de35cc_0
   - werkzeug=0.14.1=py35_0
   - wheel=0.31.1=py35_0
+  - widgetsnbextension=3.4.1=py35_0
   - xz=5.2.4=h1de35cc_4
   - zlib=1.2.11=h1de35cc_3
   - pip:
