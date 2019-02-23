@@ -31,8 +31,8 @@ def main():
     final_mse = mean_squared_error(y_test, final_predictions)
     final_rmse = np.sqrt(final_mse)
 
-    print('final rmse: \t {}'.format(final_rmse))
-    print('model score: \t {}'.format(final_model.score(X_test_prepared, y_test)))
+    print('final rmse: \t {}'.format(int(final_rmse)))
+    print('model score: \t {:.1%}'.format(final_model.score(X_test_prepared, y_test)))
 
 
 if __name__ == '__main__':
