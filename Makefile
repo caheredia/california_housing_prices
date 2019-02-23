@@ -32,7 +32,11 @@ data:
 
 ## Train Model
 train:
-	$(PYTHON_INTERPRETER) -m src.models.train_model 
+	$(PYTHON_INTERPRETER) -m src.models.train_model
+
+## Make predictions
+predict:
+	$(PYTHON_INTERPRETER) -m src.models.predict_model 
 
 ## Delete all compiled Python files
 clean:
