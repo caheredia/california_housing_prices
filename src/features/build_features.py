@@ -7,6 +7,13 @@ from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler
 
 
+# get the right column indices: safer than hard-coding indices 3, 4, 5, 6
+def get_indices(filename='data/raw/housing.csv'):
+    data = pd.read_csv(filename, nrows=0)
+    columns = list(data)
+    return [columns.index(col) for col in ("total_rooms", "total_bedrooms", "population", "households")]
+
+
 def add_extra_features(X, add_bedrooms_per_room=True):
     '''Adds extra features to data sets.
 
@@ -26,6 +33,7 @@ def add_extra_features(X, add_bedrooms_per_room=True):
     data : pandas.DataFrame
         Original dataframe with Chicago crime time stamps as DateTimeIndex.
     '''
+    rooms_ix, bedrooms_ix, population_ix, household_ix = get_indices()
 
     rooms_per_household = X[:, rooms_ix] / X[:, household_ix]
     population_per_household = X[:, population_ix] / X[:, household_ix]

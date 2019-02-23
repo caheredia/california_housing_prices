@@ -44,10 +44,6 @@ def main():
     housing = strat_train_set.drop("median_house_value", axis=1)
     housing_labels = strat_train_set["median_house_value"].copy()
 
-    # get the right column indices: safer than hard-coding indices 3, 4, 5, 6
-    rooms_ix, bedrooms_ix, population_ix, household_ix = [list(housing.columns).index(
-        col) for col in ("total_rooms", "total_bedrooms", "population", "households")]
-
     # Build pipelines
     # Numerical Pipelines
     num_pipeline = Pipeline([
@@ -58,7 +54,8 @@ def main():
 
     # Now we can combine both pipelines numerical and categorical into one
     # columns for numerical data
-    num_attribs = list(housing_num)
+    num_attribs = list(housing)
+    num_attribs.remove("ocean_proximity")
     # column for categorical data
     cat_attribs = ["ocean_proximity"]
 
