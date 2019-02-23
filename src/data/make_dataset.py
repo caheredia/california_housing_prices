@@ -67,10 +67,11 @@ def main():
     # Transorm data
     housing_prepared = full_pipeline.fit_transform(housing)
 
-    # Save the transformed data and pipeline parameters
+    # Save the transformed data, test data, and pipeline parameters
     joblib.dump(full_pipeline, 'models/full_pipeline.pkl')
     joblib.dump(housing_prepared, 'data/processed/'+'housing_prepared'+'.pkl')
     joblib.dump(housing_labels, 'data/processed/'+'housing_labels'+'.pkl')
+    joblib.dump(housing_labels, 'data/processed/'+'strat_test_set'+'.pkl')
 
 
 if __name__ == '__main__':
