@@ -26,9 +26,6 @@ def add_extra_features(X, add_bedrooms_per_room=True):
     data : pandas.DataFrame
         Original dataframe with Chicago crime time stamps as DateTimeIndex.
     '''
-    # get the right column indices: safer than hard-coding indices 3, 4, 5, 6
-    rooms_ix, bedrooms_ix, population_ix, household_ix = [list(housing.columns).index(
-        col) for col in ("total_rooms", "total_bedrooms", "population", "households")]
 
     rooms_per_household = X[:, rooms_ix] / X[:, household_ix]
     population_per_household = X[:, population_ix] / X[:, household_ix]
@@ -38,11 +35,3 @@ def add_extra_features(X, add_bedrooms_per_room=True):
                      bedrooms_per_room]
     else:
         return np.c_[X, rooms_per_household, population_per_household]
-
-
-# Numerical Pipelines
-num_pipeline = Pipeline([
-    ('imputer', SimpleImputer(strategy="median")),
-    ('attribs_adder', FunctionTransformer(add_extra_features, validate=False)),
-    ('std_scaler', StandardScaler()),
-])

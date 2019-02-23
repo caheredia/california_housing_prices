@@ -1,8 +1,16 @@
 # -*- coding: utf-8 -*-
-import logging
-import numpy as np
-import pandas as pd
 from sklearn.model_selection import StratifiedShuffleSplit
+from sklearn.impute import SimpleImputer
+from sklearn.preprocessing import OneHotEncoder
+from sklearn.preprocessing import FunctionTransformer
+from sklearn.pipeline import Pipeline
+from sklearn.preprocessing import StandardScaler
+from sklearn.externals import joblib
+from sklearn.compose import ColumnTransformer
+import pandas as pd
+import numpy as np
+import logging
+from ..features.build_features import add_extra_features
 
 
 def main():
@@ -36,15 +44,36 @@ def main():
     housing = strat_train_set.drop("median_house_value", axis=1)
     housing_labels = strat_train_set["median_house_value"].copy()
 
-    # remove text data, cannot impute
-    # create copy
-    housing_num = housing.drop('ocean_proximity', axis=1)
-
     # get the right column indices: safer than hard-coding indices 3, 4, 5, 6
     rooms_ix, bedrooms_ix, population_ix, household_ix = [list(housing.columns).index(
         col) for col in ("total_rooms", "total_bedrooms", "population", "households")]
 
-    print(rooms_ix, bedrooms_ix, population_ix, household_ix)
+    # Build pipelines
+    # Numerical Pipelines
+    num_pipeline = Pipeline([
+        ('imputer', SimpleImputer(strategy="median")),
+        ('attribs_adder', FunctionTransformer(add_extra_features, validate=False)),
+        ('std_scaler', StandardScaler()),
+    ])
+
+    # Now we can combine both pipelines numerical and categorical into one
+    # columns for numerical data
+    num_attribs = list(housing_num)
+    # column for categorical data
+    cat_attribs = ["ocean_proximity"]
+
+    full_pipeline = ColumnTransformer([
+        ("num", num_pipeline, num_attribs),
+        ("cat", OneHotEncoder(), cat_attribs),
+    ])
+
+    # Transorm data
+    housing_prepared = full_pipeline.fit_transform(housing)
+
+    # Save the transformed data and pipeline parameters
+    joblib.dump(full_pipeline, 'models/full_pipeline.pkl')
+    joblib.dump(housing_prepared, 'data/processed/'+'housing_prepared'+'.pkl')
+    joblib.dump(housing_labels, 'data/processed/'+'housing_labels'+'.pkl')
 
 
 if __name__ == '__main__':
