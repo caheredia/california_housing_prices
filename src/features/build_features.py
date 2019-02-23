@@ -33,6 +33,7 @@ def add_extra_features(X, add_bedrooms_per_room=True):
     X : numpy.Array
         transformed array .
     '''
+
     rooms_ix, bedrooms_ix, population_ix, household_ix = get_indices()
 
     rooms_per_household = X[:, rooms_ix] / X[:, household_ix]
