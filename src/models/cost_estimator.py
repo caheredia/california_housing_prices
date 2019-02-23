@@ -36,4 +36,5 @@ test = pd.DataFrame(data).T
 test.columns = columns
 x_prepared = full_pipeline.transform(test)
 prediction = forest_reg.predict(x_prepared)
-print(prediction)
+print('\n')
+print('Estimate: ${:,}'.format(int(prediction)))

@@ -38,6 +38,10 @@ train:
 predict:
 	$(PYTHON_INTERPRETER) -m src.models.predict_model 
 
+## Make estimate 
+estimate:
+	$(PYTHON_INTERPRETER) -m src.models.cost_estimator 
+
 ## Delete all compiled Python files
 clean:
 	find . -type f -name "*.py[co]" -delete
