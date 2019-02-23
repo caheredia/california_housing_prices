@@ -71,7 +71,7 @@ def main():
     joblib.dump(full_pipeline, 'models/full_pipeline.pkl')
     joblib.dump(housing_prepared, 'data/processed/'+'housing_prepared'+'.pkl')
     joblib.dump(housing_labels, 'data/processed/'+'housing_labels'+'.pkl')
-    joblib.dump(housing_labels, 'data/processed/'+'strat_test_set'+'.pkl')
+    joblib.dump(strat_test_set, 'data/processed/'+'strat_test_set'+'.pkl')
 
 
 if __name__ == '__main__':
