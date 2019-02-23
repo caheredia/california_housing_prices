@@ -1,5 +1,10 @@
 import numpy as np
 import pandas as pd
+from sklearn.impute import SimpleImputer
+from sklearn.preprocessing import OneHotEncoder
+from sklearn.preprocessing import FunctionTransformer
+from sklearn.pipeline import Pipeline
+from sklearn.preprocessing import StandardScaler
 
 
 def add_extra_features(X, add_bedrooms_per_room=True):
@@ -33,3 +38,11 @@ def add_extra_features(X, add_bedrooms_per_room=True):
                      bedrooms_per_room]
     else:
         return np.c_[X, rooms_per_household, population_per_household]
+
+
+# Numerical Pipelines
+num_pipeline = Pipeline([
+    ('imputer', SimpleImputer(strategy="median")),
+    ('attribs_adder', FunctionTransformer(add_extra_features, validate=False)),
+    ('std_scaler', StandardScaler()),
+])
