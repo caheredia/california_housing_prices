@@ -32,7 +32,7 @@ data:
 
 ## Train Model
 train:
-	$(PYTHON_INTERPRETER) src/data/make_train.py
+	$(PYTHON_INTERPRETER) -m src.models.train_model 
 
 ## Delete all compiled Python files
 clean:
