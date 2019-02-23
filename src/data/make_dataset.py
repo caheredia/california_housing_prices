@@ -31,7 +31,20 @@ def main():
     strat_train_set.drop("income_cat", axis=1, inplace=True)
     strat_test_set.drop("income_cat", axis=1, inplace=True)
 
-    print(strat_train_set.shape)
+    # drop labels for training set
+    # here the drop method also creates a copy
+    housing = strat_train_set.drop("median_house_value", axis=1)
+    housing_labels = strat_train_set["median_house_value"].copy()
+
+    # remove text data, cannot impute
+    # create copy
+    housing_num = housing.drop('ocean_proximity', axis=1)
+
+    # get the right column indices: safer than hard-coding indices 3, 4, 5, 6
+    rooms_ix, bedrooms_ix, population_ix, household_ix = [list(housing.columns).index(
+        col) for col in ("total_rooms", "total_bedrooms", "population", "households")]
+
+    print(rooms_ix, bedrooms_ix, population_ix, household_ix)
 
 
 if __name__ == '__main__':
