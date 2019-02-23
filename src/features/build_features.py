@@ -30,8 +30,8 @@ def add_extra_features(X, add_bedrooms_per_room=True):
 
     Returns
     -------
-    data : pandas.DataFrame
-        Original dataframe with Chicago crime time stamps as DateTimeIndex.
+    X : numpy.Array
+        transformed array .
     '''
     rooms_ix, bedrooms_ix, population_ix, household_ix = get_indices()
 
