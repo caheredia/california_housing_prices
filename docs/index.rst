@@ -23,10 +23,11 @@ Contents:
 
 
    README
-   modules
    commands
+   modules
+   
 
-Analysis
+Streamlined Analysis
 ====================
 Jupyter notebook contents:
 
@@ -34,6 +35,14 @@ Jupyter notebook contents:
    :maxdepth: 2
 
    0.2-ch_streamlined_workflow.ipynb
+
+In depth Analysis
+====================
+Jupyter notebook contents:
+
+.. toctree::
+   :maxdepth: 2
+
    0.1-ch_data_exploration.ipynb
 
 Indices and tables
