@@ -1,7 +1,12 @@
 California Housing Prices README
 ==============================
 
-predict median house values in Californian districts
+This projects predicts median house values in Californian districts. The median house prices are derived from the 1990 census.
+
+Data Publishers
+------------
+- http://www.dcc.fc.up.pt/~ltorgo/Regression/cal_housing.html
+
 
 Project Organization
 ------------

@@ -97,6 +97,7 @@
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="README.html">California Housing Prices README</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Commands</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#data-scripts">Data scripts</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#model-scripts">Model scripts</a></li>
 </ul>
 </li>
@@ -201,13 +202,18 @@
 <h1>Commands<a class="headerlink" href="#commands" title="Permalink to this headline">¶</a></h1>
 <p>The Makefile contains the central entry points for common tasks related to this project.
 This commands can be ran instead of using notebooks.</p>
+<div class="section" id="data-scripts">
+<h2>Data scripts<a class="headerlink" href="#data-scripts" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><strong>make data</strong> will use <cite>src.data.make_dataset</cite> module to load raw data and create stratified splits.</li>
+</ul>
+</div>
 <div class="section" id="model-scripts">
 <h2>Model scripts<a class="headerlink" href="#model-scripts" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><em>make data</em> will use <cite>src.data.make_dataset</cite> module to load raw data and create stratified splits.</li>
-<li><em>make trai</em> will use <cite>src.models.train_model</cite> to train on processed data and save serialized model.</li>
-<li><em>make predic</em> will use <cite>src.models.train_model</cite> to train on processed data and save serialized model.</li>
-<li><em>make estimat</em> will use <cite>src.models.train_model</cite> to train on processed data and save serialized model.</li>
+<li><strong>make train</strong> will use <cite>src.models.train_model</cite> to train on processed data and save serialized model.</li>
+<li><strong>make predict</strong> will use <cite>src.models.train_model</cite> to train on processed data and save serialized model.</li>
+<li><strong>make estimate</strong> will use <cite>src.models.train_model</cite> to train on processed data and save serialized model.</li>
 </ul>
 </div>
 </div>

@@ -5,8 +5,8 @@ This projects predicts median house values in Californian districts. The median 
 
 Data Publishers
 ------------
-- https://catalog.data.gov/dataset/crimes-2001-to-present-398a4
-- https://data.cityofchicago.org/Public-Safety/Crimes-2001-to-present-Map/c4ep-ee5m
+- http://www.dcc.fc.up.pt/~ltorgo/Regression/cal_housing.html
+
 
 Project Organization
 ------------

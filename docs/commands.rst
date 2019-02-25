@@ -13,5 +13,5 @@ Data scripts
 Model scripts
 ^^^^^^^^^^^^^^^^^^
 * **make train** will use `src.models.train_model` to train on processed data and save serialized model. 
-* **make predic** will use `src.models.train_model` to train on processed data and save serialized model. 
-* **make estimat** will use `src.models.train_model` to train on processed data and save serialized model. 
+* **make predict** will use `src.models.train_model` to train on processed data and save serialized model. 
+* **make estimate** will use `src.models.train_model` to train on processed data and save serialized model. 

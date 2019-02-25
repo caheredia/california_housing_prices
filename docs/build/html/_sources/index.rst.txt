@@ -6,7 +6,7 @@
 california_housing_prices documentation!
 ==============================================
 
-This report analyzes the Random Forrest regression model for California housing prices. 
+This report analyzes the Random Forrest regression model for California housing prices. (A work in progress)
 
 **Summary**
 

@@ -143,9 +143,9 @@
 <li class="toctree-l2"><a class="reference internal" href="#Support-Vector-Machines-(linear-kernel)">Support Vector Machines (linear kernel)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#Grid-Search">Grid Search</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#Looking-at-the-score-for-each-hyper-parameters-combination">Looking at the score for each hyper parameters combination</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#Randomized-Solution">Randomized Solution</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#results">results</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#feature-importance">feature importance</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Randomized-Search">Randomized Search</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Randomized-Search-Results">Randomized Search Results</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Feature-Importance">Feature Importance</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#Evaluate-Test-data">Evaluate Test data</a></li>
@@ -437,7 +437,7 @@ div.rendered_html tbody tr:hover {
     text-align: unset;
 }
 </style>
-<div class="nbinput docutils container">
+<div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
 </div>
@@ -450,15 +450,6 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 </div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-/Users/cristian/miniconda3/envs/mlbook/lib/python3.5/site-packages/matplotlib/font_manager.py:229: UserWarning: Matplotlib is building the font cache using fc-list. This may take a moment.
-  &#39;Matplotlib is building the font cache using fc-list. &#39;
-</pre></div></div>
-</div>
 <div class="section" id="Project-Goals">
 <h1>Project Goals<a class="headerlink" href="#Project-Goals" title="Permalink to this headline">¶</a></h1>
 <p>To create a model that predicts median house values in Californian districts, given a number of features from these districts</p>
@@ -466,7 +457,7 @@ div.rendered_html tbody tr:hover {
 <div class="section" id="Get-the-data">
 <h1>Get the data<a class="headerlink" href="#Get-the-data" title="Permalink to this headline">¶</a></h1>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[125]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -477,7 +468,7 @@ div.rendered_html tbody tr:hover {
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[125]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -582,7 +573,7 @@ div.rendered_html tbody tr:hover {
 </div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[126]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -799,7 +790,7 @@ Name: ocean_proximity, dtype: int64
 <h2>Split the data<a class="headerlink" href="#Split-the-data" title="Permalink to this headline">¶</a></h2>
 <p>Here we create training and test splits</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[128]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -808,7 +799,7 @@ Name: ocean_proximity, dtype: int64
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[129]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -817,7 +808,7 @@ Name: ocean_proximity, dtype: int64
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[129]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -922,7 +913,7 @@ Name: ocean_proximity, dtype: int64
 </div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[130]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -931,7 +922,7 @@ Name: ocean_proximity, dtype: int64
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[130]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -1039,7 +1030,7 @@ Name: ocean_proximity, dtype: int64
 <div class="section" id="reduce-the-number-of-categories">
 <h2>reduce the number of categories<a class="headerlink" href="#reduce-the-number-of-categories" title="Permalink to this headline">¶</a></h2>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[172]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1055,7 +1046,7 @@ Name: ocean_proximity, dtype: int64
 </div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[173]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1068,7 +1059,7 @@ Name: ocean_proximity, dtype: int64
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[174]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1085,7 +1076,7 @@ Name: ocean_proximity, dtype: int64
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[175]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1094,7 +1085,7 @@ Name: ocean_proximity, dtype: int64
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[175]:
 </pre></div>
 </div>
 <div class="output_area highlight-none notranslate"><div class="highlight"><pre>
@@ -1112,15 +1103,15 @@ Name: income_cat, dtype: int64
 <div class="section" id="Stratify-data">
 <h2>Stratify data<a class="headerlink" href="#Stratify-data" title="Permalink to this headline">¶</a></h2>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[187]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="c1"># split data again but this time with strata</span>
 <span class="n">split</span> <span class="o">=</span> <span class="n">StratifiedShuffleSplit</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">train_index</span><span class="p">,</span> <span class="n">test_index</span> <span class="ow">in</span> <span class="n">split</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">housing_df</span><span class="p">,</span> <span class="n">housing_df</span><span class="p">[</span><span class="s2">&quot;income_cat&quot;</span><span class="p">]):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">train_index</span><span class="p">))</span>
-    <span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">test_index</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Size of training set: </span><span class="se">\t</span><span class="s1"> </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">train_index</span><span class="p">)))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Size of test set: </span><span class="se">\t</span><span class="s1"> </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">test_index</span><span class="p">)))</span>
     <span class="n">strat_train_set</span> <span class="o">=</span> <span class="n">housing_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">train_index</span><span class="p">]</span>
     <span class="n">strat_test_set</span> <span class="o">=</span> <span class="n">housing_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">test_index</span><span class="p">]</span>
 </pre></div>
@@ -1131,12 +1122,12 @@ Name: income_cat, dtype: int64
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-16512
-4128
+Size of training set:    16512
+Size of test set:        4128
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[188]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1145,7 +1136,7 @@ Name: income_cat, dtype: int64
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[188]:
 </pre></div>
 </div>
 <div class="output_area highlight-none notranslate"><div class="highlight"><pre>
@@ -1154,7 +1145,7 @@ Name: income_cat, dtype: int64
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[189]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1163,7 +1154,7 @@ Name: income_cat, dtype: int64
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[189]:
 </pre></div>
 </div>
 <div class="output_area highlight-none notranslate"><div class="highlight"><pre>
@@ -1172,7 +1163,7 @@ Name: income_cat, dtype: int64
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[190]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1182,7 +1173,7 @@ Name: income_cat, dtype: int64
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[190]:
 </pre></div>
 </div>
 <div class="output_area highlight-none notranslate"><div class="highlight"><pre>
@@ -1196,7 +1187,7 @@ Name: income_cat, dtype: float64
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[191]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1206,7 +1197,7 @@ Name: income_cat, dtype: float64
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[191]:
 </pre></div>
 </div>
 <div class="output_area highlight-none notranslate"><div class="highlight"><pre>
@@ -1220,7 +1211,7 @@ Name: income_cat, dtype: float64
 </div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[192]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1231,7 +1222,25 @@ Name: income_cat, dtype: float64
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[193]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">strat_train_set</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[193]:
+</pre></div>
+</div>
+<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>(16512, 10)
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[194]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1240,7 +1249,7 @@ Name: income_cat, dtype: float64
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[194]:
 </pre></div>
 </div>
 <div class="output_area highlight-none notranslate"><div class="highlight"><pre>
@@ -1252,18 +1261,18 @@ Name: income_cat, dtype: float64
 <div class="section" id="Save-strata-to-pickles">
 <h2>Save strata to pickles<a class="headerlink" href="#Save-strata-to-pickles" title="Permalink to this headline">¶</a></h2>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[195]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="c1"># Save the strata sets</span>
-<span class="n">strat_train_set</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">to_pickle</span><span class="p">(</span><span class="s1">&#39;data/interim/&#39;</span><span class="o">+</span><span class="s1">&#39;strat_train_set&#39;</span><span class="o">+</span><span class="s1">&#39;.pkl&#39;</span><span class="p">)</span>
-<span class="n">strat_test_set</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">to_pickle</span><span class="p">(</span><span class="s1">&#39;data/interim/&#39;</span><span class="o">+</span><span class="s1">&#39;strat_test_set&#39;</span><span class="o">+</span><span class="s1">&#39;.pkl&#39;</span><span class="p">)</span>
+<span class="n">strat_train_set</span><span class="o">.</span><span class="n">to_pickle</span><span class="p">(</span><span class="s1">&#39;data/interim/&#39;</span><span class="o">+</span><span class="s1">&#39;strat_train_set&#39;</span><span class="o">+</span><span class="s1">&#39;.pkl&#39;</span><span class="p">)</span>
+<span class="n">strat_test_set</span><span class="o">.</span><span class="n">to_pickle</span><span class="p">(</span><span class="s1">&#39;data/interim/&#39;</span><span class="o">+</span><span class="s1">&#39;strat_test_set&#39;</span><span class="o">+</span><span class="s1">&#39;.pkl&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[196]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1279,7 +1288,7 @@ Name: income_cat, dtype: float64
 <h1>Explore data (gain insights)<a class="headerlink" href="#Explore-data-(gain-insights)" title="Permalink to this headline">¶</a></h1>
 <p>So far we have a general understanding of the data. Let’s go a little deeper. First we’ll make a copy of the data so we don’t alter the training set. Note: we are not working with the full data set from here on.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[199]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1288,7 +1297,7 @@ Name: income_cat, dtype: float64
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[200]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1297,16 +1306,16 @@ Name: income_cat, dtype: float64
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[200]:
 </pre></div>
 </div>
 <div class="output_area highlight-none notranslate"><div class="highlight"><pre>
-<span></span>(4128, 10)
+<span></span>(16512, 10)
 </pre></div>
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[201]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1318,12 +1327,12 @@ Name: income_cat, dtype: float64
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="_images/0.1-ch_data_exploration_32_0.png" src="_images/0.1-ch_data_exploration_32_0.png" />
+<img alt="_images/0.1-ch_data_exploration_33_0.png" src="_images/0.1-ch_data_exploration_33_0.png" />
 </div>
 </div>
 <p><strong>Looks like California!</strong></p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[202]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1339,11 +1348,11 @@ Name: income_cat, dtype: float64
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="_images/0.1-ch_data_exploration_34_0.png" src="_images/0.1-ch_data_exploration_34_0.png" />
+<img alt="_images/0.1-ch_data_exploration_35_0.png" src="_images/0.1-ch_data_exploration_35_0.png" />
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[203]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1374,11 +1383,11 @@ Name: income_cat, dtype: float64
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="_images/0.1-ch_data_exploration_35_0.png" src="_images/0.1-ch_data_exploration_35_0.png" />
+<img alt="_images/0.1-ch_data_exploration_36_0.png" src="_images/0.1-ch_data_exploration_36_0.png" />
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[204]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1387,26 +1396,26 @@ Name: income_cat, dtype: float64
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[204]:
 </pre></div>
 </div>
 <div class="output_area highlight-none notranslate"><div class="highlight"><pre>
 <span></span>median_house_value    1.000000
-median_income         0.691831
-total_rooms           0.131435
-housing_median_age    0.071357
-households            0.071242
-total_bedrooms        0.057568
-population           -0.016033
-longitude            -0.039987
-latitude             -0.150124
+median_income         0.687160
+total_rooms           0.135097
+housing_median_age    0.114110
+households            0.064506
+total_bedrooms        0.047689
+population           -0.026920
+longitude            -0.047432
+latitude             -0.142724
 Name: median_house_value, dtype: float64
 </pre></div>
 </div>
 </div>
 <p>We see a strong correlation between median income and median house value. Next let’s look at the correlations.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[29]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[205]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1420,11 +1429,11 @@ Name: median_house_value, dtype: float64
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="_images/0.1-ch_data_exploration_38_0.png" src="_images/0.1-ch_data_exploration_38_0.png" />
+<img alt="_images/0.1-ch_data_exploration_39_0.png" src="_images/0.1-ch_data_exploration_39_0.png" />
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[30]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[206]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1436,7 +1445,7 @@ Name: median_house_value, dtype: float64
 </div>
 </div>
 <div class="nboutput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[30]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[206]:
 </pre></div>
 </div>
 <div class="output_area highlight-none notranslate"><div class="highlight"><pre>
@@ -1448,13 +1457,13 @@ Name: median_house_value, dtype: float64
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="_images/0.1-ch_data_exploration_39_1.png" src="_images/0.1-ch_data_exploration_39_1.png" />
+<img alt="_images/0.1-ch_data_exploration_40_1.png" src="_images/0.1-ch_data_exploration_40_1.png" />
 </div>
 </div>
 <div class="section" id="Experiment-with-Attribute-Combinations">
 <h2>Experiment with Attribute Combinations<a class="headerlink" href="#Experiment-with-Attribute-Combinations" title="Permalink to this headline">¶</a></h2>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[31]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[207]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1465,7 +1474,7 @@ Name: median_house_value, dtype: float64
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[32]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[208]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1475,28 +1484,28 @@ Name: median_house_value, dtype: float64
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[32]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[208]:
 </pre></div>
 </div>
 <div class="output_area highlight-none notranslate"><div class="highlight"><pre>
 <span></span>median_house_value          1.000000
-median_income               0.691831
-rooms_per_household         0.192575
-total_rooms                 0.131435
-housing_median_age          0.071357
-households                  0.071242
-total_bedrooms              0.057568
-population                 -0.016033
-longitude                  -0.039987
-population_per_household   -0.135142
-latitude                   -0.150124
-bedrooms_per_room          -0.240362
+median_income               0.687160
+rooms_per_household         0.146285
+total_rooms                 0.135097
+housing_median_age          0.114110
+households                  0.064506
+total_bedrooms              0.047689
+population_per_household   -0.021985
+population                 -0.026920
+longitude                  -0.047432
+latitude                   -0.142724
+bedrooms_per_room          -0.259984
 Name: median_house_value, dtype: float64
 </pre></div>
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[33]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[209]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1512,11 +1521,11 @@ Name: median_house_value, dtype: float64
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="_images/0.1-ch_data_exploration_43_0.png" src="_images/0.1-ch_data_exploration_43_0.png" />
+<img alt="_images/0.1-ch_data_exploration_44_0.png" src="_images/0.1-ch_data_exploration_44_0.png" />
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[34]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[210]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1526,7 +1535,7 @@ Name: median_house_value, dtype: float64
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[34]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[210]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -1565,123 +1574,123 @@ Name: median_house_value, dtype: float64
   <tbody>
     <tr>
       <th>count</th>
-      <td>4128.000000</td>
-      <td>4128.000000</td>
-      <td>4128.000000</td>
-      <td>4128.000000</td>
-      <td>4079.000000</td>
-      <td>4128.000000</td>
-      <td>4128.00000</td>
-      <td>4128.000000</td>
-      <td>4128.000000</td>
-      <td>4128.000000</td>
-      <td>4079.000000</td>
-      <td>4128.000000</td>
+      <td>16512.000000</td>
+      <td>16512.000000</td>
+      <td>16512.000000</td>
+      <td>16512.000000</td>
+      <td>16354.000000</td>
+      <td>16512.000000</td>
+      <td>16512.000000</td>
+      <td>16512.000000</td>
+      <td>16512.000000</td>
+      <td>16512.000000</td>
+      <td>16354.000000</td>
+      <td>16512.000000</td>
     </tr>
     <tr>
       <th>mean</th>
-      <td>-119.545187</td>
-      <td>35.600998</td>
-      <td>28.585029</td>
-      <td>2687.902132</td>
-      <td>549.484187</td>
-      <td>1448.220446</td>
-      <td>509.45688</td>
-      <td>3.850998</td>
-      <td>206315.401647</td>
-      <td>5.383637</td>
-      <td>0.213684</td>
-      <td>2.967526</td>
+      <td>-119.575834</td>
+      <td>35.639577</td>
+      <td>28.653101</td>
+      <td>2622.728319</td>
+      <td>534.973890</td>
+      <td>1419.790819</td>
+      <td>497.060380</td>
+      <td>3.875589</td>
+      <td>206990.920724</td>
+      <td>5.440341</td>
+      <td>0.212878</td>
+      <td>3.096437</td>
     </tr>
     <tr>
       <th>std</th>
-      <td>2.010260</td>
-      <td>2.127489</td>
-      <td>12.630172</td>
-      <td>2345.868226</td>
-      <td>454.414696</td>
-      <td>1197.088364</td>
-      <td>407.59254</td>
-      <td>1.879270</td>
-      <td>114170.048854</td>
-      <td>1.822611</td>
-      <td>0.060344</td>
-      <td>1.584630</td>
+      <td>2.001860</td>
+      <td>2.138058</td>
+      <td>12.574726</td>
+      <td>2138.458419</td>
+      <td>412.699041</td>
+      <td>1115.686241</td>
+      <td>375.720845</td>
+      <td>1.904950</td>
+      <td>115703.014830</td>
+      <td>2.611712</td>
+      <td>0.057379</td>
+      <td>11.584826</td>
     </tr>
     <tr>
       <th>min</th>
-      <td>-124.180000</td>
-      <td>32.550000</td>
+      <td>-124.350000</td>
+      <td>32.540000</td>
       <td>1.000000</td>
+      <td>6.000000</td>
       <td>2.000000</td>
-      <td>1.000000</td>
-      <td>5.000000</td>
-      <td>1.00000</td>
+      <td>3.000000</td>
+      <td>2.000000</td>
       <td>0.499900</td>
       <td>14999.000000</td>
-      <td>0.846154</td>
+      <td>1.130435</td>
       <td>0.100000</td>
-      <td>1.089286</td>
+      <td>0.692308</td>
     </tr>
     <tr>
       <th>25%</th>
-      <td>-121.780000</td>
-      <td>33.920000</td>
+      <td>-121.800000</td>
+      <td>33.940000</td>
       <td>18.000000</td>
-      <td>1474.000000</td>
-      <td>301.000000</td>
-      <td>805.750000</td>
-      <td>283.00000</td>
-      <td>2.543000</td>
-      <td>118975.000000</td>
-      <td>4.434536</td>
-      <td>0.175927</td>
-      <td>2.425183</td>
+      <td>1443.000000</td>
+      <td>295.000000</td>
+      <td>784.000000</td>
+      <td>279.000000</td>
+      <td>2.566775</td>
+      <td>119800.000000</td>
+      <td>4.442040</td>
+      <td>0.175304</td>
+      <td>2.431287</td>
     </tr>
     <tr>
       <th>50%</th>
-      <td>-118.455000</td>
-      <td>34.220000</td>
-      <td>28.000000</td>
-      <td>2158.500000</td>
-      <td>441.000000</td>
-      <td>1172.000000</td>
-      <td>416.00000</td>
-      <td>3.514750</td>
-      <td>181300.000000</td>
-      <td>5.218776</td>
-      <td>0.203543</td>
-      <td>2.823084</td>
+      <td>-118.510000</td>
+      <td>34.260000</td>
+      <td>29.000000</td>
+      <td>2119.500000</td>
+      <td>433.000000</td>
+      <td>1164.000000</td>
+      <td>408.000000</td>
+      <td>3.540900</td>
+      <td>179500.000000</td>
+      <td>5.232284</td>
+      <td>0.203031</td>
+      <td>2.817653</td>
     </tr>
     <tr>
       <th>75%</th>
-      <td>-117.980000</td>
-      <td>37.690000</td>
+      <td>-118.010000</td>
+      <td>37.720000</td>
       <td>37.000000</td>
-      <td>3171.000000</td>
-      <td>653.000000</td>
-      <td>1754.000000</td>
-      <td>613.00000</td>
-      <td>4.739700</td>
-      <td>269025.000000</td>
-      <td>6.031716</td>
-      <td>0.239756</td>
-      <td>3.286534</td>
+      <td>3141.000000</td>
+      <td>644.000000</td>
+      <td>1719.250000</td>
+      <td>602.000000</td>
+      <td>4.744475</td>
+      <td>263900.000000</td>
+      <td>6.056361</td>
+      <td>0.239831</td>
+      <td>3.281420</td>
     </tr>
     <tr>
       <th>max</th>
-      <td>-114.560000</td>
+      <td>-114.310000</td>
       <td>41.950000</td>
       <td>52.000000</td>
-      <td>32627.000000</td>
-      <td>6445.000000</td>
-      <td>28566.000000</td>
-      <td>6082.00000</td>
+      <td>39320.000000</td>
+      <td>6210.000000</td>
+      <td>35682.000000</td>
+      <td>5358.000000</td>
       <td>15.000100</td>
       <td>500001.000000</td>
-      <td>37.063492</td>
+      <td>141.909091</td>
       <td>1.000000</td>
-      <td>63.750000</td>
+      <td>1243.333333</td>
     </tr>
   </tbody>
 </table>
@@ -1693,7 +1702,7 @@ Name: median_house_value, dtype: float64
 <div class="section" id="Prepare-data-for-Machine-Learning-algorithms">
 <h1>Prepare data for Machine Learning algorithms<a class="headerlink" href="#Prepare-data-for-Machine-Learning-algorithms" title="Permalink to this headline">¶</a></h1>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[35]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[211]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1705,7 +1714,7 @@ Name: median_house_value, dtype: float64
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[36]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[212]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1714,18 +1723,18 @@ Name: median_house_value, dtype: float64
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[36]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[212]:
 </pre></div>
 </div>
 <div class="output_area highlight-none notranslate"><div class="highlight"><pre>
-<span></span>(4128, 9)
+<span></span>(16512, 9)
 </pre></div>
 </div>
 </div>
 <div class="section" id="Explore-missing-data">
 <h2>Explore missing data<a class="headerlink" href="#Explore-missing-data" title="Permalink to this headline">¶</a></h2>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[37]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[213]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1735,7 +1744,7 @@ Name: median_house_value, dtype: float64
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[37]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[213]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -1770,63 +1779,63 @@ Name: median_house_value, dtype: float64
   </thead>
   <tbody>
     <tr>
-      <th>4309</th>
-      <td>-118.32</td>
-      <td>34.09</td>
-      <td>44.0</td>
-      <td>2666.0</td>
-      <td>NaN</td>
-      <td>2297.0</td>
-      <td>726.0</td>
-      <td>1.6760</td>
-      <td>&lt;1H OCEAN</td>
-    </tr>
-    <tr>
-      <th>11096</th>
-      <td>-117.87</td>
-      <td>33.83</td>
-      <td>27.0</td>
-      <td>2287.0</td>
-      <td>NaN</td>
-      <td>1140.0</td>
-      <td>351.0</td>
-      <td>5.6163</td>
-      <td>&lt;1H OCEAN</td>
-    </tr>
-    <tr>
-      <th>3912</th>
-      <td>-118.55</td>
-      <td>34.19</td>
+      <th>4629</th>
+      <td>-118.30</td>
+      <td>34.07</td>
       <td>18.0</td>
-      <td>5862.0</td>
+      <td>3759.0</td>
       <td>NaN</td>
-      <td>3161.0</td>
-      <td>1280.0</td>
-      <td>3.1106</td>
+      <td>3296.0</td>
+      <td>1462.0</td>
+      <td>2.2708</td>
       <td>&lt;1H OCEAN</td>
     </tr>
     <tr>
-      <th>15030</th>
-      <td>-117.02</td>
-      <td>32.78</td>
-      <td>31.0</td>
-      <td>2567.0</td>
+      <th>6068</th>
+      <td>-117.86</td>
+      <td>34.01</td>
+      <td>16.0</td>
+      <td>4632.0</td>
       <td>NaN</td>
-      <td>1198.0</td>
-      <td>499.0</td>
-      <td>3.4659</td>
+      <td>3038.0</td>
+      <td>727.0</td>
+      <td>5.1762</td>
       <td>&lt;1H OCEAN</td>
     </tr>
     <tr>
-      <th>10885</th>
-      <td>-117.92</td>
-      <td>33.70</td>
-      <td>15.0</td>
-      <td>3201.0</td>
+      <th>17923</th>
+      <td>-121.97</td>
+      <td>37.35</td>
+      <td>30.0</td>
+      <td>1955.0</td>
       <td>NaN</td>
-      <td>1510.0</td>
-      <td>622.0</td>
-      <td>4.2708</td>
+      <td>999.0</td>
+      <td>386.0</td>
+      <td>4.6328</td>
+      <td>&lt;1H OCEAN</td>
+    </tr>
+    <tr>
+      <th>13656</th>
+      <td>-117.30</td>
+      <td>34.05</td>
+      <td>6.0</td>
+      <td>2155.0</td>
+      <td>NaN</td>
+      <td>1039.0</td>
+      <td>391.0</td>
+      <td>1.6675</td>
+      <td>INLAND</td>
+    </tr>
+    <tr>
+      <th>19252</th>
+      <td>-122.79</td>
+      <td>38.48</td>
+      <td>7.0</td>
+      <td>6837.0</td>
+      <td>NaN</td>
+      <td>3468.0</td>
+      <td>1405.0</td>
+      <td>3.1662</td>
       <td>&lt;1H OCEAN</td>
     </tr>
   </tbody>
@@ -1839,7 +1848,7 @@ Name: median_house_value, dtype: float64
 <div class="section" id="drop-rows">
 <h3>drop rows<a class="headerlink" href="#drop-rows" title="Permalink to this headline">¶</a></h3>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[38]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[214]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1849,7 +1858,7 @@ Name: median_house_value, dtype: float64
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[38]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[214]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -1891,7 +1900,7 @@ Name: median_house_value, dtype: float64
 <div class="section" id="drop-attributes-(columns)">
 <h3>drop attributes (columns)<a class="headerlink" href="#drop-attributes-(columns)" title="Permalink to this headline">¶</a></h3>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[39]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[215]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1900,7 +1909,7 @@ Name: median_house_value, dtype: float64
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[39]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[215]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -1934,58 +1943,58 @@ Name: median_house_value, dtype: float64
   </thead>
   <tbody>
     <tr>
-      <th>4309</th>
-      <td>-118.32</td>
-      <td>34.09</td>
-      <td>44.0</td>
-      <td>2666.0</td>
-      <td>2297.0</td>
-      <td>726.0</td>
-      <td>1.6760</td>
-      <td>&lt;1H OCEAN</td>
-    </tr>
-    <tr>
-      <th>11096</th>
-      <td>-117.87</td>
-      <td>33.83</td>
-      <td>27.0</td>
-      <td>2287.0</td>
-      <td>1140.0</td>
-      <td>351.0</td>
-      <td>5.6163</td>
-      <td>&lt;1H OCEAN</td>
-    </tr>
-    <tr>
-      <th>3912</th>
-      <td>-118.55</td>
-      <td>34.19</td>
+      <th>4629</th>
+      <td>-118.30</td>
+      <td>34.07</td>
       <td>18.0</td>
-      <td>5862.0</td>
-      <td>3161.0</td>
-      <td>1280.0</td>
-      <td>3.1106</td>
+      <td>3759.0</td>
+      <td>3296.0</td>
+      <td>1462.0</td>
+      <td>2.2708</td>
       <td>&lt;1H OCEAN</td>
     </tr>
     <tr>
-      <th>15030</th>
-      <td>-117.02</td>
-      <td>32.78</td>
-      <td>31.0</td>
-      <td>2567.0</td>
-      <td>1198.0</td>
-      <td>499.0</td>
-      <td>3.4659</td>
+      <th>6068</th>
+      <td>-117.86</td>
+      <td>34.01</td>
+      <td>16.0</td>
+      <td>4632.0</td>
+      <td>3038.0</td>
+      <td>727.0</td>
+      <td>5.1762</td>
       <td>&lt;1H OCEAN</td>
     </tr>
     <tr>
-      <th>10885</th>
-      <td>-117.92</td>
-      <td>33.70</td>
-      <td>15.0</td>
-      <td>3201.0</td>
-      <td>1510.0</td>
-      <td>622.0</td>
-      <td>4.2708</td>
+      <th>17923</th>
+      <td>-121.97</td>
+      <td>37.35</td>
+      <td>30.0</td>
+      <td>1955.0</td>
+      <td>999.0</td>
+      <td>386.0</td>
+      <td>4.6328</td>
+      <td>&lt;1H OCEAN</td>
+    </tr>
+    <tr>
+      <th>13656</th>
+      <td>-117.30</td>
+      <td>34.05</td>
+      <td>6.0</td>
+      <td>2155.0</td>
+      <td>1039.0</td>
+      <td>391.0</td>
+      <td>1.6675</td>
+      <td>INLAND</td>
+    </tr>
+    <tr>
+      <th>19252</th>
+      <td>-122.79</td>
+      <td>38.48</td>
+      <td>7.0</td>
+      <td>6837.0</td>
+      <td>3468.0</td>
+      <td>1405.0</td>
+      <td>3.1662</td>
       <td>&lt;1H OCEAN</td>
     </tr>
   </tbody>
@@ -1996,7 +2005,7 @@ Name: median_house_value, dtype: float64
 <div class="section" id="impute-data">
 <h3>impute data<a class="headerlink" href="#impute-data" title="Permalink to this headline">¶</a></h3>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[40]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[216]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -2007,7 +2016,7 @@ Name: median_house_value, dtype: float64
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[40]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[216]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -2042,63 +2051,63 @@ Name: median_house_value, dtype: float64
   </thead>
   <tbody>
     <tr>
-      <th>4309</th>
-      <td>-118.32</td>
-      <td>34.09</td>
-      <td>44.0</td>
-      <td>2666.0</td>
-      <td>441.0</td>
-      <td>2297.0</td>
-      <td>726.0</td>
-      <td>1.6760</td>
-      <td>&lt;1H OCEAN</td>
-    </tr>
-    <tr>
-      <th>11096</th>
-      <td>-117.87</td>
-      <td>33.83</td>
-      <td>27.0</td>
-      <td>2287.0</td>
-      <td>441.0</td>
-      <td>1140.0</td>
-      <td>351.0</td>
-      <td>5.6163</td>
-      <td>&lt;1H OCEAN</td>
-    </tr>
-    <tr>
-      <th>3912</th>
-      <td>-118.55</td>
-      <td>34.19</td>
+      <th>4629</th>
+      <td>-118.30</td>
+      <td>34.07</td>
       <td>18.0</td>
-      <td>5862.0</td>
-      <td>441.0</td>
-      <td>3161.0</td>
-      <td>1280.0</td>
-      <td>3.1106</td>
+      <td>3759.0</td>
+      <td>433.0</td>
+      <td>3296.0</td>
+      <td>1462.0</td>
+      <td>2.2708</td>
       <td>&lt;1H OCEAN</td>
     </tr>
     <tr>
-      <th>15030</th>
-      <td>-117.02</td>
-      <td>32.78</td>
-      <td>31.0</td>
-      <td>2567.0</td>
-      <td>441.0</td>
-      <td>1198.0</td>
-      <td>499.0</td>
-      <td>3.4659</td>
+      <th>6068</th>
+      <td>-117.86</td>
+      <td>34.01</td>
+      <td>16.0</td>
+      <td>4632.0</td>
+      <td>433.0</td>
+      <td>3038.0</td>
+      <td>727.0</td>
+      <td>5.1762</td>
       <td>&lt;1H OCEAN</td>
     </tr>
     <tr>
-      <th>10885</th>
-      <td>-117.92</td>
-      <td>33.70</td>
-      <td>15.0</td>
-      <td>3201.0</td>
-      <td>441.0</td>
-      <td>1510.0</td>
-      <td>622.0</td>
-      <td>4.2708</td>
+      <th>17923</th>
+      <td>-121.97</td>
+      <td>37.35</td>
+      <td>30.0</td>
+      <td>1955.0</td>
+      <td>433.0</td>
+      <td>999.0</td>
+      <td>386.0</td>
+      <td>4.6328</td>
+      <td>&lt;1H OCEAN</td>
+    </tr>
+    <tr>
+      <th>13656</th>
+      <td>-117.30</td>
+      <td>34.05</td>
+      <td>6.0</td>
+      <td>2155.0</td>
+      <td>433.0</td>
+      <td>1039.0</td>
+      <td>391.0</td>
+      <td>1.6675</td>
+      <td>INLAND</td>
+    </tr>
+    <tr>
+      <th>19252</th>
+      <td>-122.79</td>
+      <td>38.48</td>
+      <td>7.0</td>
+      <td>6837.0</td>
+      <td>433.0</td>
+      <td>3468.0</td>
+      <td>1405.0</td>
+      <td>3.1662</td>
       <td>&lt;1H OCEAN</td>
     </tr>
   </tbody>
@@ -2106,7 +2115,7 @@ Name: median_house_value, dtype: float64
 </div></div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[41]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[217]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -2117,7 +2126,7 @@ Name: median_house_value, dtype: float64
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[42]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[218]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -2131,7 +2140,7 @@ Name: median_house_value, dtype: float64
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[42]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[218]:
 </pre></div>
 </div>
 <div class="output_area highlight-none notranslate"><div class="highlight"><pre>
@@ -2141,7 +2150,7 @@ Name: median_house_value, dtype: float64
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[43]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[219]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -2151,17 +2160,17 @@ Name: median_house_value, dtype: float64
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[43]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[219]:
 </pre></div>
 </div>
 <div class="output_area highlight-none notranslate"><div class="highlight"><pre>
-<span></span>array([-118.455  ,   34.22   ,   28.     , 2158.5    ,  441.     ,
-       1172.     ,  416.     ,    3.51475])
+<span></span>array([-118.51  ,   34.26  ,   29.    , 2119.5   ,  433.    , 1164.    ,
+        408.    ,    3.5409])
 </pre></div>
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[44]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[220]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -2171,12 +2180,12 @@ Name: median_house_value, dtype: float64
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[44]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[220]:
 </pre></div>
 </div>
 <div class="output_area highlight-none notranslate"><div class="highlight"><pre>
-<span></span>array([-118.455  ,   34.22   ,   28.     , 2158.5    ,  441.     ,
-       1172.     ,  416.     ,    3.51475])
+<span></span>array([-118.51  ,   34.26  ,   29.    , 2119.5   ,  433.    , 1164.    ,
+        408.    ,    3.5409])
 </pre></div>
 </div>
 </div>
@@ -2184,7 +2193,7 @@ Name: median_house_value, dtype: float64
 <div class="section" id="Tranfsform-training-set">
 <h3>Tranfsform training set<a class="headerlink" href="#Tranfsform-training-set" title="Permalink to this headline">¶</a></h3>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[45]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[221]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -2193,7 +2202,7 @@ Name: median_house_value, dtype: float64
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[46]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[222]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -2205,7 +2214,7 @@ Name: median_house_value, dtype: float64
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[46]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[222]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -2239,66 +2248,66 @@ Name: median_house_value, dtype: float64
   </thead>
   <tbody>
     <tr>
-      <th>5241</th>
-      <td>-118.39</td>
-      <td>34.12</td>
-      <td>29.0</td>
-      <td>6447.0</td>
-      <td>1012.0</td>
-      <td>2184.0</td>
-      <td>960.0</td>
-      <td>8.2816</td>
+      <th>17606</th>
+      <td>-121.89</td>
+      <td>37.29</td>
+      <td>38.0</td>
+      <td>1568.0</td>
+      <td>351.0</td>
+      <td>710.0</td>
+      <td>339.0</td>
+      <td>2.7042</td>
     </tr>
     <tr>
-      <th>10970</th>
-      <td>-117.86</td>
-      <td>33.77</td>
-      <td>39.0</td>
-      <td>4159.0</td>
-      <td>655.0</td>
-      <td>1669.0</td>
-      <td>651.0</td>
-      <td>4.6111</td>
-    </tr>
-    <tr>
-      <th>20351</th>
-      <td>-119.05</td>
-      <td>34.21</td>
-      <td>27.0</td>
-      <td>4357.0</td>
-      <td>926.0</td>
-      <td>2110.0</td>
-      <td>876.0</td>
-      <td>3.0119</td>
-    </tr>
-    <tr>
-      <th>6568</th>
-      <td>-118.15</td>
-      <td>34.20</td>
-      <td>52.0</td>
-      <td>1786.0</td>
+      <th>18632</th>
+      <td>-121.93</td>
+      <td>37.05</td>
+      <td>14.0</td>
+      <td>679.0</td>
+      <td>108.0</td>
       <td>306.0</td>
-      <td>1018.0</td>
-      <td>322.0</td>
-      <td>4.1518</td>
+      <td>113.0</td>
+      <td>6.4214</td>
     </tr>
     <tr>
-      <th>13285</th>
-      <td>-117.68</td>
-      <td>34.07</td>
-      <td>32.0</td>
-      <td>1775.0</td>
-      <td>314.0</td>
-      <td>1067.0</td>
-      <td>302.0</td>
-      <td>4.0375</td>
+      <th>14650</th>
+      <td>-117.20</td>
+      <td>32.77</td>
+      <td>31.0</td>
+      <td>1952.0</td>
+      <td>471.0</td>
+      <td>936.0</td>
+      <td>462.0</td>
+      <td>2.8621</td>
+    </tr>
+    <tr>
+      <th>3230</th>
+      <td>-119.61</td>
+      <td>36.31</td>
+      <td>25.0</td>
+      <td>1847.0</td>
+      <td>371.0</td>
+      <td>1460.0</td>
+      <td>353.0</td>
+      <td>1.8839</td>
+    </tr>
+    <tr>
+      <th>3555</th>
+      <td>-118.59</td>
+      <td>34.23</td>
+      <td>17.0</td>
+      <td>6592.0</td>
+      <td>1525.0</td>
+      <td>4459.0</td>
+      <td>1463.0</td>
+      <td>3.0347</td>
     </tr>
   </tbody>
 </table>
 </div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[47]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[223]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -2308,7 +2317,7 @@ Name: median_house_value, dtype: float64
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[47]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[223]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -2342,66 +2351,66 @@ Name: median_house_value, dtype: float64
   </thead>
   <tbody>
     <tr>
-      <th>4309</th>
-      <td>-118.32</td>
-      <td>34.09</td>
-      <td>44.0</td>
-      <td>2666.0</td>
-      <td>441.0</td>
-      <td>2297.0</td>
-      <td>726.0</td>
-      <td>1.6760</td>
-    </tr>
-    <tr>
-      <th>11096</th>
-      <td>-117.87</td>
-      <td>33.83</td>
-      <td>27.0</td>
-      <td>2287.0</td>
-      <td>441.0</td>
-      <td>1140.0</td>
-      <td>351.0</td>
-      <td>5.6163</td>
-    </tr>
-    <tr>
-      <th>3912</th>
-      <td>-118.55</td>
-      <td>34.19</td>
+      <th>4629</th>
+      <td>-118.30</td>
+      <td>34.07</td>
       <td>18.0</td>
-      <td>5862.0</td>
-      <td>441.0</td>
-      <td>3161.0</td>
-      <td>1280.0</td>
-      <td>3.1106</td>
+      <td>3759.0</td>
+      <td>433.0</td>
+      <td>3296.0</td>
+      <td>1462.0</td>
+      <td>2.2708</td>
     </tr>
     <tr>
-      <th>15030</th>
-      <td>-117.02</td>
-      <td>32.78</td>
-      <td>31.0</td>
-      <td>2567.0</td>
-      <td>441.0</td>
-      <td>1198.0</td>
-      <td>499.0</td>
-      <td>3.4659</td>
+      <th>6068</th>
+      <td>-117.86</td>
+      <td>34.01</td>
+      <td>16.0</td>
+      <td>4632.0</td>
+      <td>433.0</td>
+      <td>3038.0</td>
+      <td>727.0</td>
+      <td>5.1762</td>
     </tr>
     <tr>
-      <th>10885</th>
-      <td>-117.92</td>
-      <td>33.70</td>
-      <td>15.0</td>
-      <td>3201.0</td>
-      <td>441.0</td>
-      <td>1510.0</td>
-      <td>622.0</td>
-      <td>4.2708</td>
+      <th>17923</th>
+      <td>-121.97</td>
+      <td>37.35</td>
+      <td>30.0</td>
+      <td>1955.0</td>
+      <td>433.0</td>
+      <td>999.0</td>
+      <td>386.0</td>
+      <td>4.6328</td>
+    </tr>
+    <tr>
+      <th>13656</th>
+      <td>-117.30</td>
+      <td>34.05</td>
+      <td>6.0</td>
+      <td>2155.0</td>
+      <td>433.0</td>
+      <td>1039.0</td>
+      <td>391.0</td>
+      <td>1.6675</td>
+    </tr>
+    <tr>
+      <th>19252</th>
+      <td>-122.79</td>
+      <td>38.48</td>
+      <td>7.0</td>
+      <td>6837.0</td>
+      <td>433.0</td>
+      <td>3468.0</td>
+      <td>1405.0</td>
+      <td>3.1662</td>
     </tr>
   </tbody>
 </table>
 </div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[48]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[224]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -2412,7 +2421,7 @@ Name: median_house_value, dtype: float64
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[48]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[224]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -2447,58 +2456,58 @@ Name: median_house_value, dtype: float64
   <tbody>
     <tr>
       <th>0</th>
-      <td>-118.39</td>
-      <td>34.12</td>
-      <td>29.0</td>
-      <td>6447.0</td>
-      <td>1012.0</td>
-      <td>2184.0</td>
-      <td>960.0</td>
-      <td>8.2816</td>
+      <td>-121.89</td>
+      <td>37.29</td>
+      <td>38.0</td>
+      <td>1568.0</td>
+      <td>351.0</td>
+      <td>710.0</td>
+      <td>339.0</td>
+      <td>2.7042</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>-117.86</td>
-      <td>33.77</td>
-      <td>39.0</td>
-      <td>4159.0</td>
-      <td>655.0</td>
-      <td>1669.0</td>
-      <td>651.0</td>
-      <td>4.6111</td>
+      <td>-121.93</td>
+      <td>37.05</td>
+      <td>14.0</td>
+      <td>679.0</td>
+      <td>108.0</td>
+      <td>306.0</td>
+      <td>113.0</td>
+      <td>6.4214</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>-119.05</td>
-      <td>34.21</td>
-      <td>27.0</td>
-      <td>4357.0</td>
-      <td>926.0</td>
-      <td>2110.0</td>
-      <td>876.0</td>
-      <td>3.0119</td>
+      <td>-117.20</td>
+      <td>32.77</td>
+      <td>31.0</td>
+      <td>1952.0</td>
+      <td>471.0</td>
+      <td>936.0</td>
+      <td>462.0</td>
+      <td>2.8621</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>-118.15</td>
-      <td>34.20</td>
-      <td>52.0</td>
-      <td>1786.0</td>
-      <td>306.0</td>
-      <td>1018.0</td>
-      <td>322.0</td>
-      <td>4.1518</td>
+      <td>-119.61</td>
+      <td>36.31</td>
+      <td>25.0</td>
+      <td>1847.0</td>
+      <td>371.0</td>
+      <td>1460.0</td>
+      <td>353.0</td>
+      <td>1.8839</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>-117.68</td>
-      <td>34.07</td>
-      <td>32.0</td>
-      <td>1775.0</td>
-      <td>314.0</td>
-      <td>1067.0</td>
-      <td>302.0</td>
-      <td>4.0375</td>
+      <td>-118.59</td>
+      <td>34.23</td>
+      <td>17.0</td>
+      <td>6592.0</td>
+      <td>1525.0</td>
+      <td>4459.0</td>
+      <td>1463.0</td>
+      <td>3.0347</td>
     </tr>
   </tbody>
 </table>
@@ -2508,7 +2517,7 @@ Name: median_house_value, dtype: float64
 <div class="section" id="Text-Encoding">
 <h3>Text Encoding<a class="headerlink" href="#Text-Encoding" title="Permalink to this headline">¶</a></h3>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[49]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[225]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -2517,7 +2526,7 @@ Name: median_house_value, dtype: float64
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[50]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[226]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -2527,7 +2536,7 @@ Name: median_house_value, dtype: float64
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[50]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[226]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -2554,31 +2563,31 @@ Name: median_house_value, dtype: float64
   </thead>
   <tbody>
     <tr>
-      <th>5241</th>
+      <th>17606</th>
       <td>&lt;1H OCEAN</td>
     </tr>
     <tr>
-      <th>10970</th>
+      <th>18632</th>
       <td>&lt;1H OCEAN</td>
     </tr>
     <tr>
-      <th>20351</th>
-      <td>&lt;1H OCEAN</td>
+      <th>14650</th>
+      <td>NEAR OCEAN</td>
     </tr>
     <tr>
-      <th>6568</th>
+      <th>3230</th>
       <td>INLAND</td>
     </tr>
     <tr>
-      <th>13285</th>
-      <td>INLAND</td>
+      <th>3555</th>
+      <td>&lt;1H OCEAN</td>
     </tr>
   </tbody>
 </table>
 </div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[51]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[227]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -2589,17 +2598,17 @@ Name: median_house_value, dtype: float64
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[51]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[227]:
 </pre></div>
 </div>
 <div class="output_area highlight-none notranslate"><div class="highlight"><pre>
-<span></span>&lt;4128x5 sparse matrix of type &#39;&lt;class &#39;numpy.float64&#39;&gt;&#39;
-    with 4128 stored elements in Compressed Sparse Row format&gt;
+<span></span>&lt;16512x5 sparse matrix of type &#39;&lt;class &#39;numpy.float64&#39;&gt;&#39;
+    with 16512 stored elements in Compressed Sparse Row format&gt;
 </pre></div>
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[52]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[228]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -2609,22 +2618,22 @@ Name: median_house_value, dtype: float64
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[52]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[228]:
 </pre></div>
 </div>
 <div class="output_area highlight-none notranslate"><div class="highlight"><pre>
 <span></span>array([[1., 0., 0., 0., 0.],
        [1., 0., 0., 0., 0.],
-       [1., 0., 0., 0., 0.],
+       [0., 0., 0., 0., 1.],
        ...,
-       [1., 0., 0., 0., 0.],
        [0., 1., 0., 0., 0.],
-       [0., 1., 0., 0., 0.]])
+       [1., 0., 0., 0., 0.],
+       [0., 0., 0., 1., 0.]])
 </pre></div>
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[53]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[229]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -2634,7 +2643,7 @@ Name: median_house_value, dtype: float64
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[53]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[229]:
 </pre></div>
 </div>
 <div class="output_area highlight-none notranslate"><div class="highlight"><pre>
@@ -2647,7 +2656,7 @@ Name: median_house_value, dtype: float64
 <div class="section" id="Custom-Transformers">
 <h3>Custom Transformers<a class="headerlink" href="#Custom-Transformers" title="Permalink to this headline">¶</a></h3>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[54]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[230]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -2656,7 +2665,7 @@ Name: median_house_value, dtype: float64
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[54]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[230]:
 </pre></div>
 </div>
 <div class="output_area highlight-none notranslate"><div class="highlight"><pre>
@@ -2665,7 +2674,7 @@ Name: median_house_value, dtype: float64
 </div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[55]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[231]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -2697,7 +2706,7 @@ Name: median_house_value, dtype: float64
 </div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[56]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[232]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -2721,7 +2730,7 @@ Name: median_house_value, dtype: float64
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[57]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[233]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -2730,21 +2739,22 @@ Name: median_house_value, dtype: float64
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[57]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[233]:
 </pre></div>
 </div>
 <div class="output_area highlight-none notranslate"><div class="highlight"><pre>
-<span></span>array([[-118.39, 34.12, 29.0, 6447.0, 1012.0, 2184.0, 960.0, 8.2816,
-        &#39;&lt;1H OCEAN&#39;, 6.715625, 2.275],
-       [-117.86, 33.77, 39.0, 4159.0, 655.0, 1669.0, 651.0, 4.6111,
-        &#39;&lt;1H OCEAN&#39;, 6.38863287250384, 2.563748079877112],
-       [-119.05, 34.21, 27.0, 4357.0, 926.0, 2110.0, 876.0, 3.0119,
-        &#39;&lt;1H OCEAN&#39;, 4.973744292237443, 2.4086757990867578]], dtype=object)
+<span></span>array([[-121.89, 37.29, 38.0, 1568.0, 351.0, 710.0, 339.0, 2.7042,
+        &#39;&lt;1H OCEAN&#39;, 4.625368731563422, 2.094395280235988],
+       [-121.93, 37.05, 14.0, 679.0, 108.0, 306.0, 113.0, 6.4214,
+        &#39;&lt;1H OCEAN&#39;, 6.008849557522124, 2.7079646017699117],
+       [-117.2, 32.77, 31.0, 1952.0, 471.0, 936.0, 462.0, 2.8621,
+        &#39;NEAR OCEAN&#39;, 4.225108225108225, 2.0259740259740258]],
+      dtype=object)
 </pre></div>
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[58]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[234]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -2755,7 +2765,7 @@ Name: median_house_value, dtype: float64
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[58]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[234]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -2793,73 +2803,73 @@ Name: median_house_value, dtype: float64
   <tbody>
     <tr>
       <th>0</th>
-      <td>-118.39</td>
-      <td>34.12</td>
-      <td>29</td>
-      <td>6447</td>
-      <td>1012</td>
-      <td>2184</td>
-      <td>960</td>
-      <td>8.2816</td>
+      <td>-121.89</td>
+      <td>37.29</td>
+      <td>38</td>
+      <td>1568</td>
+      <td>351</td>
+      <td>710</td>
+      <td>339</td>
+      <td>2.7042</td>
       <td>&lt;1H OCEAN</td>
-      <td>6.71563</td>
-      <td>2.275</td>
+      <td>4.62537</td>
+      <td>2.0944</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>-117.86</td>
-      <td>33.77</td>
-      <td>39</td>
-      <td>4159</td>
-      <td>655</td>
-      <td>1669</td>
-      <td>651</td>
-      <td>4.6111</td>
+      <td>-121.93</td>
+      <td>37.05</td>
+      <td>14</td>
+      <td>679</td>
+      <td>108</td>
+      <td>306</td>
+      <td>113</td>
+      <td>6.4214</td>
       <td>&lt;1H OCEAN</td>
-      <td>6.38863</td>
-      <td>2.56375</td>
+      <td>6.00885</td>
+      <td>2.70796</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>-119.05</td>
-      <td>34.21</td>
-      <td>27</td>
-      <td>4357</td>
-      <td>926</td>
-      <td>2110</td>
-      <td>876</td>
-      <td>3.0119</td>
-      <td>&lt;1H OCEAN</td>
-      <td>4.97374</td>
-      <td>2.40868</td>
+      <td>-117.2</td>
+      <td>32.77</td>
+      <td>31</td>
+      <td>1952</td>
+      <td>471</td>
+      <td>936</td>
+      <td>462</td>
+      <td>2.8621</td>
+      <td>NEAR OCEAN</td>
+      <td>4.22511</td>
+      <td>2.02597</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>-118.15</td>
-      <td>34.2</td>
-      <td>52</td>
-      <td>1786</td>
-      <td>306</td>
-      <td>1018</td>
-      <td>322</td>
-      <td>4.1518</td>
+      <td>-119.61</td>
+      <td>36.31</td>
+      <td>25</td>
+      <td>1847</td>
+      <td>371</td>
+      <td>1460</td>
+      <td>353</td>
+      <td>1.8839</td>
       <td>INLAND</td>
-      <td>5.54658</td>
-      <td>3.16149</td>
+      <td>5.23229</td>
+      <td>4.13598</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>-117.68</td>
-      <td>34.07</td>
-      <td>32</td>
-      <td>1775</td>
-      <td>314</td>
-      <td>1067</td>
-      <td>302</td>
-      <td>4.0375</td>
-      <td>INLAND</td>
-      <td>5.87748</td>
-      <td>3.53311</td>
+      <td>-118.59</td>
+      <td>34.23</td>
+      <td>17</td>
+      <td>6592</td>
+      <td>1525</td>
+      <td>4459</td>
+      <td>1463</td>
+      <td>3.0347</td>
+      <td>&lt;1H OCEAN</td>
+      <td>4.50581</td>
+      <td>3.04785</td>
     </tr>
   </tbody>
 </table>
@@ -2869,7 +2879,7 @@ Name: median_house_value, dtype: float64
 <div class="section" id="Transformation-Pipelines">
 <h3>Transformation Pipelines<a class="headerlink" href="#Transformation-Pipelines" title="Permalink to this headline">¶</a></h3>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[59]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[235]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -2887,7 +2897,7 @@ Name: median_house_value, dtype: float64
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[60]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[236]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -2896,16 +2906,16 @@ Name: median_house_value, dtype: float64
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[60]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[236]:
 </pre></div>
 </div>
 <div class="output_area highlight-none notranslate"><div class="highlight"><pre>
-<span></span>(4128, 11)
+<span></span>(16512, 11)
 </pre></div>
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[61]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[237]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -2914,28 +2924,28 @@ Name: median_house_value, dtype: float64
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[61]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[237]:
 </pre></div>
 </div>
 <div class="output_area highlight-none notranslate"><div class="highlight"><pre>
-<span></span>array([[ 0.57471497, -0.69620912,  0.03285951, ...,  0.73090182,
-        -0.43707996, -0.8842083 ],
-       [ 0.83839441, -0.86074221,  0.82471029, ...,  0.55147147,
-        -0.25483994, -0.8762043 ],
-       [ 0.24635944, -0.65390061, -0.12551065, ..., -0.22492016,
-        -0.35271202, -0.02496691],
+<span></span>array([[-1.15604281,  0.77194962,  0.74333089, ..., -0.31205452,
+        -0.08649871,  0.15531753],
+       [-1.17602483,  0.6596948 , -1.1653172 , ...,  0.21768338,
+        -0.03353391, -0.83628902],
+       [ 1.18684903, -1.34218285,  0.18664186, ..., -0.46531516,
+        -0.09240499,  0.4222004 ],
        ...,
-       [ 0.52496413, -0.66800344,  0.19122966, ..., -0.48888899,
-        -0.50176243,  0.08016752],
-       [ 1.10704893, -0.75732141, -0.12551065, ...,  0.63227321,
-        -0.06103921, -0.90599188],
-       [ 0.31601062,  0.55894333, -0.75899128, ...,  8.13018121,
-        -0.39763381, -0.21111508]])
+       [ 1.58648943, -0.72478134, -1.56295222, ...,  0.3469342 ,
+        -0.03055414, -0.52177644],
+       [ 0.78221312, -0.85106801,  0.18664186, ...,  0.02499488,
+         0.06150916, -0.30340741],
+       [-1.43579109,  0.99645926,  1.85670895, ..., -0.22852947,
+        -0.09586294,  0.10180567]])
 </pre></div>
 </div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[62]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[238]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -2954,7 +2964,7 @@ Name: median_house_value, dtype: float64
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[63]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[239]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -2963,28 +2973,28 @@ Name: median_house_value, dtype: float64
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[63]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[239]:
 </pre></div>
 </div>
 <div class="output_area highlight-none notranslate"><div class="highlight"><pre>
-<span></span>array([[ 0.57471497, -0.69620912,  0.03285951, ...,  0.        ,
+<span></span>array([[-1.15604281,  0.77194962,  0.74333089, ...,  0.        ,
          0.        ,  0.        ],
-       [ 0.83839441, -0.86074221,  0.82471029, ...,  0.        ,
+       [-1.17602483,  0.6596948 , -1.1653172 , ...,  0.        ,
          0.        ,  0.        ],
-       [ 0.24635944, -0.65390061, -0.12551065, ...,  0.        ,
-         0.        ,  0.        ],
+       [ 1.18684903, -1.34218285,  0.18664186, ...,  0.        ,
+         0.        ,  1.        ],
        ...,
-       [ 0.52496413, -0.66800344,  0.19122966, ...,  0.        ,
+       [ 1.58648943, -0.72478134, -1.56295222, ...,  0.        ,
          0.        ,  0.        ],
-       [ 1.10704893, -0.75732141, -0.12551065, ...,  0.        ,
+       [ 0.78221312, -0.85106801,  0.18664186, ...,  0.        ,
          0.        ,  0.        ],
-       [ 0.31601062,  0.55894333, -0.75899128, ...,  0.        ,
-         0.        ,  0.        ]])
+       [-1.43579109,  0.99645926,  1.85670895, ...,  0.        ,
+         1.        ,  0.        ]])
 </pre></div>
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[64]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[240]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -2994,17 +3004,17 @@ Name: median_house_value, dtype: float64
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[64]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[240]:
 </pre></div>
 </div>
 <div class="output_area highlight-none notranslate"><div class="highlight"><pre>
-<span></span>(4128, 16)
+<span></span>(16512, 16)
 </pre></div>
 </div>
 </div>
 <p>The new matrix contains the original columns transformed plus 5 more columns for the categorical encoder data</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[65]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[241]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -3016,7 +3026,7 @@ Name: median_house_value, dtype: float64
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[65]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[241]:
 </pre></div>
 </div>
 <div class="output_area highlight-none notranslate"><div class="highlight"><pre>
@@ -3030,7 +3040,7 @@ Name: median_house_value, dtype: float64
 <div class="section" id="Explore-models">
 <h1>Explore models<a class="headerlink" href="#Explore-models" title="Permalink to this headline">¶</a></h1>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[66]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[242]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -3042,7 +3052,7 @@ Name: median_house_value, dtype: float64
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[67]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[244]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -3052,18 +3062,18 @@ Name: median_house_value, dtype: float64
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[67]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[244]:
 </pre></div>
 </div>
 <div class="output_area highlight-none notranslate"><div class="highlight"><pre>
-<span></span>(4128, 16)
+<span></span>(16512, 16)
 </pre></div>
 </div>
 </div>
 <div class="section" id="Linear-Regression">
 <h2>Linear Regression<a class="headerlink" href="#Linear-Regression" title="Permalink to this headline">¶</a></h2>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[68]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[245]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -3077,7 +3087,7 @@ Name: median_house_value, dtype: float64
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[68]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[245]:
 </pre></div>
 </div>
 <div class="output_area highlight-none notranslate"><div class="highlight"><pre>
@@ -3087,7 +3097,7 @@ Name: median_house_value, dtype: float64
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[69]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[246]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -3105,12 +3115,12 @@ Name: median_house_value, dtype: float64
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Predictions: [421744.42249999 260114.72443261 223619.75780631 197841.21049675
- 162428.02376156]
+Predictions: [210644.60459286 317768.80697211 210956.43331178  59218.98886849
+ 189747.55849879]
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[70]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[247]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -3123,11 +3133,11 @@ Predictions: [421744.42249999 260114.72443261 223619.75780631 197841.21049675
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Labels: [500001.0, 240300.0, 218200.0, 182100.0, 121300.0]
+Labels: [286600.0, 340600.0, 196900.0, 46300.0, 254500.0]
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[71]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[248]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -3142,15 +3152,15 @@ Labels: [500001.0, 240300.0, 218200.0, 182100.0, 121300.0]
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Prediction: 421744       Label: 500001
-Prediction: 260114       Label: 240300
-Prediction: 223619       Label: 218200
-Prediction: 197841       Label: 182100
-Prediction: 162428       Label: 121300
+Prediction: 210644       Label: 286600
+Prediction: 317768       Label: 340600
+Prediction: 210956       Label: 196900
+Prediction: 59218        Label: 46300
+Prediction: 189747       Label: 254500
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[72]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[249]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -3159,7 +3169,7 @@ Prediction: 162428       Label: 121300
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[72]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[249]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -3188,28 +3198,28 @@ Prediction: 162428       Label: 121300
   <tbody>
     <tr>
       <th>0</th>
-      <td>500001.0</td>
-      <td>421744.422500</td>
+      <td>286600.0</td>
+      <td>210644.604593</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>240300.0</td>
-      <td>260114.724433</td>
+      <td>340600.0</td>
+      <td>317768.806972</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>218200.0</td>
-      <td>223619.757806</td>
+      <td>196900.0</td>
+      <td>210956.433312</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>182100.0</td>
-      <td>197841.210497</td>
+      <td>46300.0</td>
+      <td>59218.988868</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>121300.0</td>
-      <td>162428.023762</td>
+      <td>254500.0</td>
+      <td>189747.558499</td>
     </tr>
   </tbody>
 </table>
@@ -3218,7 +3228,7 @@ Prediction: 162428       Label: 121300
 <div class="section" id="Model-performance">
 <h3>Model performance<a class="headerlink" href="#Model-performance" title="Permalink to this headline">¶</a></h3>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[73]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[250]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -3232,16 +3242,16 @@ Prediction: 162428       Label: 121300
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[73]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[250]:
 </pre></div>
 </div>
 <div class="output_area highlight-none notranslate"><div class="highlight"><pre>
-<span></span>66786.21496458739
+<span></span>68628.19819848922
 </pre></div>
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[74]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[251]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -3253,11 +3263,11 @@ Prediction: 162428       Label: 121300
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[74]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[251]:
 </pre></div>
 </div>
 <div class="output_area highlight-none notranslate"><div class="highlight"><pre>
-<span></span>48821.51499475819
+<span></span>49439.89599001898
 </pre></div>
 </div>
 </div>
@@ -3266,7 +3276,7 @@ Prediction: 162428       Label: 121300
 <div class="section" id="Decision-Tree">
 <h2>Decision Tree<a class="headerlink" href="#Decision-Tree" title="Permalink to this headline">¶</a></h2>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[75]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[252]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -3278,7 +3288,7 @@ Prediction: 162428       Label: 121300
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[75]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[252]:
 </pre></div>
 </div>
 <div class="output_area highlight-none notranslate"><div class="highlight"><pre>
@@ -3291,7 +3301,7 @@ Prediction: 162428       Label: 121300
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[76]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[253]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -3303,7 +3313,7 @@ Prediction: 162428       Label: 121300
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[76]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[253]:
 </pre></div>
 </div>
 <div class="output_area highlight-none notranslate"><div class="highlight"><pre>
@@ -3314,7 +3324,7 @@ Prediction: 162428       Label: 121300
 <div class="section" id="Model-Performance">
 <h3>Model Performance<a class="headerlink" href="#Model-Performance" title="Permalink to this headline">¶</a></h3>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[77]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[254]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -3323,7 +3333,7 @@ Prediction: 162428       Label: 121300
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[77]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[254]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -3352,28 +3362,28 @@ Prediction: 162428       Label: 121300
   <tbody>
     <tr>
       <th>0</th>
-      <td>500001.0</td>
-      <td>500001.0</td>
+      <td>286600.0</td>
+      <td>286600.0</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>240300.0</td>
-      <td>240300.0</td>
+      <td>340600.0</td>
+      <td>340600.0</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>218200.0</td>
-      <td>218200.0</td>
+      <td>196900.0</td>
+      <td>196900.0</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>182100.0</td>
-      <td>182100.0</td>
+      <td>46300.0</td>
+      <td>46300.0</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>121300.0</td>
-      <td>121300.0</td>
+      <td>254500.0</td>
+      <td>254500.0</td>
     </tr>
   </tbody>
 </table>
@@ -3387,7 +3397,7 @@ Prediction: 162428       Label: 121300
 <div class="section" id="Decision-Tree-Regression">
 <h2>Decision Tree Regression<a class="headerlink" href="#Decision-Tree-Regression" title="Permalink to this headline">¶</a></h2>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[78]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[255]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -3401,7 +3411,7 @@ Prediction: 162428       Label: 121300
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[79]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[256]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -3419,11 +3429,11 @@ Prediction: 162428       Label: 121300
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Scores: [77337.3443527  74690.73647577 76707.97280317 74927.69175246
- 73028.20412098 74829.23930049 77685.40011689 73772.25338852
- 81027.61519283 76846.96178113]
-Mean: 76085.3419284936
-Standard deviation: 2215.41954448141
+Scores: [70194.33680785 66855.16363941 72432.58244769 70758.73896782
+ 71115.88230639 75585.14172901 70262.86139133 70273.6325285
+ 75366.87952553 71231.65726027]
+Mean: 71407.68766037929
+Standard deviation: 2439.4345041191004
 </pre></div></div>
 </div>
 <p>This is peforming worse than linear regression</p>
@@ -3431,7 +3441,7 @@ Standard deviation: 2215.41954448141
 <div class="section" id="Linear-Regression">
 <h2>Linear Regression<a class="headerlink" href="#Linear-Regression" title="Permalink to this headline">¶</a></h2>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[80]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[257]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -3447,18 +3457,18 @@ Standard deviation: 2215.41954448141
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Scores: [63617.83777613 68545.2121548  69704.07640037 65153.12819314
- 68300.67945714 69848.69045216 70313.85379963 65268.65765778
- 69677.18715774 62192.37769492]
-Mean: 67262.1700743812
-Standard deviation: 2791.574395257554
+Scores: [66782.73843989 66960.118071   70347.95244419 74739.57052552
+ 68031.13388938 71193.84183426 64969.63056405 68281.61137997
+ 71552.91566558 67665.10082067]
+Mean: 69052.46136345083
+Standard deviation: 2731.674001798347
 </pre></div></div>
 </div>
 </div>
 <div class="section" id="Random-Forrest-Regression">
 <h2>Random Forrest Regression<a class="headerlink" href="#Random-Forrest-Regression" title="Permalink to this headline">¶</a></h2>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[81]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[258]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -3470,7 +3480,7 @@ Standard deviation: 2791.574395257554
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[81]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[258]:
 </pre></div>
 </div>
 <div class="output_area highlight-none notranslate"><div class="highlight"><pre>
@@ -3484,7 +3494,7 @@ Standard deviation: 2791.574395257554
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[82]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[259]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -3496,16 +3506,16 @@ Standard deviation: 2791.574395257554
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[82]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[259]:
 </pre></div>
 </div>
 <div class="output_area highlight-none notranslate"><div class="highlight"><pre>
-<span></span>23455.822660665053
+<span></span>21933.31414779769
 </pre></div>
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[83]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[260]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -3523,11 +3533,11 @@ Standard deviation: 2791.574395257554
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Scores: [54987.46218651 57668.57345367 61220.11060715 54224.13749018
- 59073.55292675 54316.71757133 56730.30295053 54370.57843228
- 60432.70260986 51420.27620512]
-Mean: 56444.44144333804
-Standard deviation: 2972.012406959129
+Scores: [51646.44545909 48940.60114882 53050.86323649 54408.98730149
+ 50922.14870785 56482.50703987 51864.52025526 49760.85037653
+ 55434.21627933 53326.10093303]
+Mean: 52583.72407377466
+Standard deviation: 2298.353351147122
 </pre></div></div>
 </div>
 </div>
@@ -3535,7 +3545,7 @@ Standard deviation: 2972.012406959129
 <h2>Support Vector Machines (linear kernel)<a class="headerlink" href="#Support-Vector-Machines-(linear-kernel)" title="Permalink to this headline">¶</a></h2>
 <p>A low C makes the decision surface smooth, while a high C aims at classifying all training examples correctly. gamma defines how much influence a single training example has. The larger gamma is, the closer other examples must be to be affected.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[84]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[261]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -3551,16 +3561,16 @@ Standard deviation: 2972.012406959129
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[84]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[261]:
 </pre></div>
 </div>
 <div class="output_area highlight-none notranslate"><div class="highlight"><pre>
-<span></span>114543.62541259706
+<span></span>111094.6308539982
 </pre></div>
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[85]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[262]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -3576,15 +3586,15 @@ Standard deviation: 2972.012406959129
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Scores: [113978.6577051  114365.24102069 115392.4857292  119366.08036426
- 113407.3808349  117815.05168172 106746.84897989 114397.24667727
- 123819.93643004 107547.33961541]
-Mean: 114683.62690384829
-Standard deviation: 4815.953000421483
+Scores: [105342.09141998 112489.24624123 110092.35042753 113403.22892482
+ 110638.90119657 115675.8320024  110703.56887243 114476.89008206
+ 113756.17971227 111520.1120808 ]
+Mean: 111809.84009600841
+Standard deviation: 2762.393664321567
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[86]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[263]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -3599,16 +3609,16 @@ Standard deviation: 4815.953000421483
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[86]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[263]:
 </pre></div>
 </div>
 <div class="output_area highlight-none notranslate"><div class="highlight"><pre>
-<span></span>116750.75284344256
+<span></span>118577.43356412371
 </pre></div>
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[87]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[264]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -3624,11 +3634,11 @@ Standard deviation: 4815.953000421483
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Scores: [116041.5489715  116346.81942542 117309.8529965  121499.89251287
- 115541.76778457 119930.32484023 108554.62191827 116532.20515673
- 126055.35585624 109284.53618272]
-Mean: 116709.69256450523
-Standard deviation: 4946.027396748644
+Scores: [111393.33263237 119546.71049753 116961.00489445 120449.0155974
+ 117622.20149716 122303.76986818 117640.09907103 121459.63518806
+ 120348.51364519 118025.61954959]
+Mean: 118574.99024409598
+Standard deviation: 2934.1329433145675
 </pre></div></div>
 </div>
 </div>
@@ -3639,7 +3649,7 @@ Standard deviation: 4946.027396748644
 <li>In the case below there will be <span class="math notranslate nohighlight">\((3*4 + 2*3)*5=(12 + 6)*5 = 90\)</span> trainings</li>
 </ul>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[88]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[265]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -3661,7 +3671,7 @@ Standard deviation: 4946.027396748644
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[88]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[265]:
 </pre></div>
 </div>
 <div class="output_area highlight-none notranslate"><div class="highlight"><pre>
@@ -3673,14 +3683,14 @@ Standard deviation: 4946.027396748644
            min_weight_fraction_leaf=0.0, n_estimators=&#39;warn&#39;, n_jobs=None,
            oob_score=False, random_state=42, verbose=0, warm_start=False),
        fit_params=None, iid=&#39;warn&#39;, n_jobs=-1,
-       param_grid=[{&#39;max_features&#39;: [2, 4, 6, 8], &#39;n_estimators&#39;: [3, 10, 30]}, {&#39;max_features&#39;: [2, 3, 4], &#39;bootstrap&#39;: [False], &#39;n_estimators&#39;: [3, 10]}],
+       param_grid=[{&#39;n_estimators&#39;: [3, 10, 30], &#39;max_features&#39;: [2, 4, 6, 8]}, {&#39;n_estimators&#39;: [3, 10], &#39;max_features&#39;: [2, 3, 4], &#39;bootstrap&#39;: [False]}],
        pre_dispatch=&#39;2*n_jobs&#39;, refit=True, return_train_score=True,
        scoring=&#39;neg_mean_squared_error&#39;, verbose=0)
 </pre></div>
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[89]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[266]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -3693,11 +3703,11 @@ Standard deviation: 4946.027396748644
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-The best hyperparameter combination found: {&#39;max_features&#39;: 8, &#39;n_estimators&#39;: 30}
+The best hyperparameter combination found: {&#39;n_estimators&#39;: 30, &#39;max_features&#39;: 8}
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[90]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[267]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -3707,7 +3717,7 @@ The best hyperparameter combination found: {&#39;max_features&#39;: 8, &#39;n_es
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[90]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[267]:
 </pre></div>
 </div>
 <div class="output_area highlight-none notranslate"><div class="highlight"><pre>
@@ -3723,7 +3733,7 @@ The best hyperparameter combination found: {&#39;max_features&#39;: 8, &#39;n_es
 <div class="section" id="Looking-at-the-score-for-each-hyper-parameters-combination">
 <h3>Looking at the score for each hyper parameters combination<a class="headerlink" href="#Looking-at-the-score-for-each-hyper-parameters-combination" title="Permalink to this headline">¶</a></h3>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[91]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[268]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -3738,28 +3748,28 @@ The best hyperparameter combination found: {&#39;max_features&#39;: 8, &#39;n_es
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-70008 {&#39;max_features&#39;: 2, &#39;n_estimators&#39;: 3}
-59239 {&#39;max_features&#39;: 2, &#39;n_estimators&#39;: 10}
-57032 {&#39;max_features&#39;: 2, &#39;n_estimators&#39;: 30}
-64557 {&#39;max_features&#39;: 4, &#39;n_estimators&#39;: 3}
-56231 {&#39;max_features&#39;: 4, &#39;n_estimators&#39;: 10}
-54013 {&#39;max_features&#39;: 4, &#39;n_estimators&#39;: 30}
-63594 {&#39;max_features&#39;: 6, &#39;n_estimators&#39;: 3}
-55367 {&#39;max_features&#39;: 6, &#39;n_estimators&#39;: 10}
-53414 {&#39;max_features&#39;: 6, &#39;n_estimators&#39;: 30}
-62335 {&#39;max_features&#39;: 8, &#39;n_estimators&#39;: 3}
-55381 {&#39;max_features&#39;: 8, &#39;n_estimators&#39;: 10}
-53126 {&#39;max_features&#39;: 8, &#39;n_estimators&#39;: 30}
-69012 {&#39;max_features&#39;: 2, &#39;bootstrap&#39;: False, &#39;n_estimators&#39;: 3}
-58657 {&#39;max_features&#39;: 2, &#39;bootstrap&#39;: False, &#39;n_estimators&#39;: 10}
-65303 {&#39;max_features&#39;: 3, &#39;bootstrap&#39;: False, &#39;n_estimators&#39;: 3}
-56705 {&#39;max_features&#39;: 3, &#39;bootstrap&#39;: False, &#39;n_estimators&#39;: 10}
-64633 {&#39;max_features&#39;: 4, &#39;bootstrap&#39;: False, &#39;n_estimators&#39;: 3}
-55868 {&#39;max_features&#39;: 4, &#39;bootstrap&#39;: False, &#39;n_estimators&#39;: 10}
+63669 {&#39;n_estimators&#39;: 3, &#39;max_features&#39;: 2}
+55627 {&#39;n_estimators&#39;: 10, &#39;max_features&#39;: 2}
+53384 {&#39;n_estimators&#39;: 30, &#39;max_features&#39;: 2}
+60965 {&#39;n_estimators&#39;: 3, &#39;max_features&#39;: 4}
+52740 {&#39;n_estimators&#39;: 10, &#39;max_features&#39;: 4}
+50377 {&#39;n_estimators&#39;: 30, &#39;max_features&#39;: 4}
+58663 {&#39;n_estimators&#39;: 3, &#39;max_features&#39;: 6}
+52006 {&#39;n_estimators&#39;: 10, &#39;max_features&#39;: 6}
+50146 {&#39;n_estimators&#39;: 30, &#39;max_features&#39;: 6}
+57869 {&#39;n_estimators&#39;: 3, &#39;max_features&#39;: 8}
+51711 {&#39;n_estimators&#39;: 10, &#39;max_features&#39;: 8}
+49682 {&#39;n_estimators&#39;: 30, &#39;max_features&#39;: 8}
+62895 {&#39;n_estimators&#39;: 3, &#39;max_features&#39;: 2, &#39;bootstrap&#39;: False}
+54658 {&#39;n_estimators&#39;: 10, &#39;max_features&#39;: 2, &#39;bootstrap&#39;: False}
+59470 {&#39;n_estimators&#39;: 3, &#39;max_features&#39;: 3, &#39;bootstrap&#39;: False}
+52725 {&#39;n_estimators&#39;: 10, &#39;max_features&#39;: 3, &#39;bootstrap&#39;: False}
+57490 {&#39;n_estimators&#39;: 3, &#39;max_features&#39;: 4, &#39;bootstrap&#39;: False}
+51009 {&#39;n_estimators&#39;: 10, &#39;max_features&#39;: 4, &#39;bootstrap&#39;: False}
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[92]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[269]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -3768,7 +3778,7 @@ The best hyperparameter combination found: {&#39;max_features&#39;: 8, &#39;n_es
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[92]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[269]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -3816,435 +3826,435 @@ The best hyperparameter combination found: {&#39;max_features&#39;: 8, &#39;n_es
   <tbody>
     <tr>
       <th>11</th>
-      <td>0.758684</td>
-      <td>0.012210</td>
-      <td>-2.822437e+09</td>
-      <td>-4.214984e+08</td>
+      <td>3.354504</td>
+      <td>0.053489</td>
+      <td>-2.468326e+09</td>
+      <td>-3.810330e+08</td>
       <td>NaN</td>
       <td>8</td>
       <td>30</td>
-      <td>{'max_features': 8, 'n_estimators': 30}</td>
+      <td>{'n_estimators': 30, 'max_features': 8}</td>
       <td>1</td>
-      <td>-2.910091e+09</td>
+      <td>-2.357390e+09</td>
       <td>...</td>
-      <td>-2.735486e+09</td>
-      <td>-4.300119e+08</td>
-      <td>-2.690065e+09</td>
-      <td>-4.321468e+08</td>
-      <td>-2.811227e+09</td>
-      <td>-4.218837e+08</td>
-      <td>0.148701</td>
-      <td>0.001146</td>
-      <td>1.032099e+08</td>
-      <td>9.207945e+06</td>
+      <td>-2.591972e+09</td>
+      <td>-3.773239e+08</td>
+      <td>-2.318617e+09</td>
+      <td>-3.882250e+08</td>
+      <td>-2.527022e+09</td>
+      <td>-3.810005e+08</td>
+      <td>0.172000</td>
+      <td>0.009551</td>
+      <td>1.091647e+08</td>
+      <td>4.871017e+06</td>
     </tr>
     <tr>
       <th>8</th>
-      <td>0.579784</td>
-      <td>0.014939</td>
-      <td>-2.853126e+09</td>
-      <td>-4.336464e+08</td>
+      <td>2.525017</td>
+      <td>0.050918</td>
+      <td>-2.514668e+09</td>
+      <td>-3.841296e+08</td>
       <td>NaN</td>
       <td>6</td>
       <td>30</td>
-      <td>{'max_features': 6, 'n_estimators': 30}</td>
+      <td>{'n_estimators': 30, 'max_features': 6}</td>
       <td>2</td>
-      <td>-2.866822e+09</td>
+      <td>-2.370010e+09</td>
       <td>...</td>
-      <td>-2.860887e+09</td>
-      <td>-4.466845e+08</td>
-      <td>-2.681912e+09</td>
-      <td>-4.358375e+08</td>
-      <td>-2.836342e+09</td>
-      <td>-4.302742e+08</td>
-      <td>0.146818</td>
-      <td>0.004467</td>
-      <td>1.072334e+08</td>
-      <td>7.259267e+06</td>
+      <td>-2.607703e+09</td>
+      <td>-3.805218e+08</td>
+      <td>-2.350953e+09</td>
+      <td>-3.856095e+08</td>
+      <td>-2.661059e+09</td>
+      <td>-3.901917e+08</td>
+      <td>0.221924</td>
+      <td>0.002579</td>
+      <td>1.285063e+08</td>
+      <td>3.617057e+06</td>
     </tr>
     <tr>
       <th>5</th>
-      <td>0.447878</td>
-      <td>0.028491</td>
-      <td>-2.917455e+09</td>
-      <td>-4.465449e+08</td>
+      <td>1.784167</td>
+      <td>0.058159</td>
+      <td>-2.537877e+09</td>
+      <td>-3.879289e+08</td>
       <td>NaN</td>
       <td>4</td>
       <td>30</td>
-      <td>{'max_features': 4, 'n_estimators': 30}</td>
+      <td>{'n_estimators': 30, 'max_features': 4}</td>
       <td>3</td>
-      <td>-2.990936e+09</td>
+      <td>-2.387153e+09</td>
       <td>...</td>
-      <td>-2.842256e+09</td>
-      <td>-4.335941e+08</td>
-      <td>-2.838632e+09</td>
-      <td>-4.459875e+08</td>
-      <td>-2.866625e+09</td>
-      <td>-4.479043e+08</td>
-      <td>0.104560</td>
-      <td>0.020835</td>
-      <td>8.611133e+07</td>
-      <td>7.973112e+06</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>0.177921</td>
-      <td>0.005960</td>
-      <td>-3.065598e+09</td>
-      <td>-5.743280e+08</td>
-      <td>NaN</td>
-      <td>6</td>
-      <td>10</td>
-      <td>{'max_features': 6, 'n_estimators': 10}</td>
-      <td>4</td>
-      <td>-3.199728e+09</td>
-      <td>...</td>
-      <td>-3.094329e+09</td>
-      <td>-5.732452e+08</td>
-      <td>-2.872414e+09</td>
-      <td>-5.817381e+08</td>
-      <td>-3.003144e+09</td>
-      <td>-5.630658e+08</td>
-      <td>0.058321</td>
-      <td>0.001896</td>
-      <td>1.171072e+08</td>
-      <td>6.714790e+06</td>
-    </tr>
-    <tr>
-      <th>10</th>
-      <td>0.189748</td>
-      <td>0.005687</td>
-      <td>-3.067134e+09</td>
-      <td>-5.600304e+08</td>
-      <td>NaN</td>
-      <td>8</td>
-      <td>10</td>
-      <td>{'max_features': 8, 'n_estimators': 10}</td>
-      <td>5</td>
-      <td>-3.136248e+09</td>
-      <td>...</td>
-      <td>-3.025465e+09</td>
-      <td>-5.714293e+08</td>
-      <td>-2.976121e+09</td>
-      <td>-5.645380e+08</td>
-      <td>-3.023858e+09</td>
-      <td>-5.699087e+08</td>
-      <td>0.052756</td>
-      <td>0.000818</td>
-      <td>7.490209e+07</td>
-      <td>1.158084e+07</td>
+      <td>-2.666426e+09</td>
+      <td>-3.790867e+08</td>
+      <td>-2.398071e+09</td>
+      <td>-4.040957e+08</td>
+      <td>-2.649316e+09</td>
+      <td>-3.845520e+08</td>
+      <td>0.122772</td>
+      <td>0.017129</td>
+      <td>1.214603e+08</td>
+      <td>8.571233e+06</td>
     </tr>
     <tr>
       <th>17</th>
-      <td>0.223248</td>
-      <td>0.008883</td>
-      <td>-3.121236e+09</td>
-      <td>0.000000e+00</td>
+      <td>0.976491</td>
+      <td>0.028234</td>
+      <td>-2.601971e+09</td>
+      <td>-3.028238e-03</td>
       <td>False</td>
       <td>4</td>
       <td>10</td>
-      <td>{'max_features': 4, 'bootstrap': False, 'n_est...</td>
-      <td>6</td>
-      <td>-3.142334e+09</td>
+      <td>{'n_estimators': 10, 'max_features': 4, 'boots...</td>
+      <td>4</td>
+      <td>-2.525578e+09</td>
       <td>...</td>
-      <td>-3.197125e+09</td>
+      <td>-2.609100e+09</td>
       <td>-0.000000e+00</td>
-      <td>-3.057189e+09</td>
+      <td>-2.439607e+09</td>
       <td>-0.000000e+00</td>
-      <td>-3.105414e+09</td>
+      <td>-2.725548e+09</td>
       <td>-0.000000e+00</td>
-      <td>0.064329</td>
-      <td>0.001643</td>
-      <td>4.658981e+07</td>
-      <td>0.000000e+00</td>
+      <td>0.295675</td>
+      <td>0.007139</td>
+      <td>1.088031e+08</td>
+      <td>6.056477e-03</td>
     </tr>
     <tr>
-      <th>4</th>
-      <td>0.142156</td>
-      <td>0.004926</td>
-      <td>-3.161994e+09</td>
-      <td>-5.995111e+08</td>
+      <th>10</th>
+      <td>1.112599</td>
+      <td>0.019048</td>
+      <td>-2.674037e+09</td>
+      <td>-4.923911e+08</td>
       <td>NaN</td>
-      <td>4</td>
+      <td>8</td>
       <td>10</td>
-      <td>{'max_features': 4, 'n_estimators': 10}</td>
-      <td>7</td>
-      <td>-3.229916e+09</td>
+      <td>{'n_estimators': 10, 'max_features': 8}</td>
+      <td>5</td>
+      <td>-2.571970e+09</td>
       <td>...</td>
-      <td>-2.998472e+09</td>
-      <td>-5.773579e+08</td>
-      <td>-3.114222e+09</td>
-      <td>-6.057566e+08</td>
-      <td>-3.155499e+09</td>
-      <td>-6.057284e+08</td>
-      <td>0.019815</td>
-      <td>0.000574</td>
-      <td>1.059642e+08</td>
-      <td>1.122922e+07</td>
+      <td>-2.842317e+09</td>
+      <td>-4.730979e+08</td>
+      <td>-2.460258e+09</td>
+      <td>-5.155367e+08</td>
+      <td>-2.776666e+09</td>
+      <td>-4.985555e+08</td>
+      <td>0.100974</td>
+      <td>0.002301</td>
+      <td>1.392720e+08</td>
+      <td>1.459294e+07</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>0.827751</td>
+      <td>0.020989</td>
+      <td>-2.704640e+09</td>
+      <td>-5.013349e+08</td>
+      <td>NaN</td>
+      <td>6</td>
+      <td>10</td>
+      <td>{'n_estimators': 10, 'max_features': 6}</td>
+      <td>6</td>
+      <td>-2.549663e+09</td>
+      <td>...</td>
+      <td>-2.762720e+09</td>
+      <td>-4.994664e+08</td>
+      <td>-2.521134e+09</td>
+      <td>-4.990325e+08</td>
+      <td>-2.907667e+09</td>
+      <td>-5.055542e+08</td>
+      <td>0.077836</td>
+      <td>0.006335</td>
+      <td>1.471542e+08</td>
+      <td>3.100456e+06</td>
     </tr>
     <tr>
       <th>15</th>
-      <td>0.145032</td>
-      <td>0.006885</td>
-      <td>-3.215493e+09</td>
-      <td>0.000000e+00</td>
+      <td>0.675495</td>
+      <td>0.022814</td>
+      <td>-2.779927e+09</td>
+      <td>-5.272080e+00</td>
       <td>False</td>
       <td>3</td>
       <td>10</td>
-      <td>{'max_features': 3, 'bootstrap': False, 'n_est...</td>
-      <td>8</td>
-      <td>-3.394998e+09</td>
+      <td>{'n_estimators': 10, 'max_features': 3, 'boots...</td>
+      <td>7</td>
+      <td>-2.757999e+09</td>
       <td>...</td>
-      <td>-3.171556e+09</td>
+      <td>-2.830927e+09</td>
       <td>-0.000000e+00</td>
-      <td>-2.944640e+09</td>
+      <td>-2.672765e+09</td>
       <td>-0.000000e+00</td>
-      <td>-3.137769e+09</td>
-      <td>-0.000000e+00</td>
-      <td>0.024832</td>
-      <td>0.000391</td>
-      <td>1.781737e+08</td>
-      <td>0.000000e+00</td>
+      <td>-2.786190e+09</td>
+      <td>-5.465556e+00</td>
+      <td>0.073931</td>
+      <td>0.001319</td>
+      <td>6.286611e+07</td>
+      <td>8.093117e+00</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.558351</td>
+      <td>0.021956</td>
+      <td>-2.781611e+09</td>
+      <td>-5.163863e+08</td>
+      <td>NaN</td>
+      <td>4</td>
+      <td>10</td>
+      <td>{'n_estimators': 10, 'max_features': 4}</td>
+      <td>8</td>
+      <td>-2.666283e+09</td>
+      <td>...</td>
+      <td>-2.892276e+09</td>
+      <td>-4.962893e+08</td>
+      <td>-2.616813e+09</td>
+      <td>-5.436192e+08</td>
+      <td>-2.948207e+09</td>
+      <td>-5.160297e+08</td>
+      <td>0.039796</td>
+      <td>0.008723</td>
+      <td>1.268562e+08</td>
+      <td>1.542862e+07</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.242620</td>
-      <td>0.033855</td>
-      <td>-3.252717e+09</td>
-      <td>-4.909257e+08</td>
+      <td>1.151661</td>
+      <td>0.052023</td>
+      <td>-2.849913e+09</td>
+      <td>-4.394734e+08</td>
       <td>NaN</td>
       <td>2</td>
       <td>30</td>
-      <td>{'max_features': 2, 'n_estimators': 30}</td>
+      <td>{'n_estimators': 30, 'max_features': 2}</td>
       <td>9</td>
-      <td>-3.199660e+09</td>
+      <td>-2.689185e+09</td>
       <td>...</td>
-      <td>-3.291826e+09</td>
-      <td>-5.023867e+08</td>
-      <td>-3.132879e+09</td>
-      <td>-4.921267e+08</td>
-      <td>-3.279530e+09</td>
-      <td>-4.831794e+08</td>
-      <td>0.076409</td>
-      <td>0.021563</td>
-      <td>7.853708e+07</td>
-      <td>6.491569e+06</td>
+      <td>-2.948330e+09</td>
+      <td>-4.371702e+08</td>
+      <td>-2.619995e+09</td>
+      <td>-4.376955e+08</td>
+      <td>-2.970968e+09</td>
+      <td>-4.452654e+08</td>
+      <td>0.144397</td>
+      <td>0.002657</td>
+      <td>1.626879e+08</td>
+      <td>2.966320e+06</td>
     </tr>
     <tr>
       <th>13</th>
-      <td>0.138130</td>
-      <td>0.006881</td>
-      <td>-3.440647e+09</td>
-      <td>0.000000e+00</td>
+      <td>0.611461</td>
+      <td>0.023005</td>
+      <td>-2.987513e+09</td>
+      <td>-6.056027e-01</td>
       <td>False</td>
       <td>2</td>
       <td>10</td>
-      <td>{'max_features': 2, 'bootstrap': False, 'n_est...</td>
+      <td>{'n_estimators': 10, 'max_features': 2, 'boots...</td>
       <td>10</td>
-      <td>-3.384104e+09</td>
+      <td>-2.810721e+09</td>
       <td>...</td>
-      <td>-3.578700e+09</td>
+      <td>-3.131187e+09</td>
       <td>-0.000000e+00</td>
-      <td>-3.508490e+09</td>
+      <td>-2.788537e+09</td>
       <td>-0.000000e+00</td>
-      <td>-3.494649e+09</td>
-      <td>-0.000000e+00</td>
-      <td>0.016733</td>
-      <td>0.000989</td>
-      <td>1.192420e+08</td>
-      <td>0.000000e+00</td>
+      <td>-3.099347e+09</td>
+      <td>-2.967449e+00</td>
+      <td>0.043821</td>
+      <td>0.000978</td>
+      <td>1.539231e+08</td>
+      <td>1.181156e+00</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.128897</td>
-      <td>0.024742</td>
-      <td>-3.509302e+09</td>
-      <td>-6.434627e+08</td>
+      <td>0.373621</td>
+      <td>0.023403</td>
+      <td>-3.094381e+09</td>
+      <td>-5.818785e+08</td>
       <td>NaN</td>
       <td>2</td>
       <td>10</td>
-      <td>{'max_features': 2, 'n_estimators': 10}</td>
+      <td>{'n_estimators': 10, 'max_features': 2}</td>
       <td>11</td>
-      <td>-3.515620e+09</td>
+      <td>-3.047771e+09</td>
       <td>...</td>
-      <td>-3.587134e+09</td>
-      <td>-6.323715e+08</td>
-      <td>-3.388995e+09</td>
-      <td>-6.317978e+08</td>
-      <td>-3.566196e+09</td>
-      <td>-6.557614e+08</td>
-      <td>0.016229</td>
-      <td>0.013780</td>
-      <td>6.961608e+07</td>
-      <td>1.396968e+07</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>0.115593</td>
-      <td>0.003927</td>
-      <td>-3.885750e+09</td>
-      <td>-1.025076e+09</td>
-      <td>NaN</td>
-      <td>8</td>
-      <td>3</td>
-      <td>{'max_features': 8, 'n_estimators': 3}</td>
-      <td>12</td>
-      <td>-3.921045e+09</td>
-      <td>...</td>
-      <td>-3.941392e+09</td>
-      <td>-1.033506e+09</td>
-      <td>-3.643222e+09</td>
-      <td>-1.058199e+09</td>
-      <td>-3.964022e+09</td>
-      <td>-1.071851e+09</td>
-      <td>0.005599</td>
-      <td>0.003254</td>
-      <td>1.221409e+08</td>
-      <td>3.813061e+07</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>0.120099</td>
-      <td>0.002523</td>
-      <td>-4.044242e+09</td>
-      <td>-1.066507e+09</td>
-      <td>NaN</td>
-      <td>6</td>
-      <td>3</td>
-      <td>{'max_features': 6, 'n_estimators': 3}</td>
-      <td>13</td>
-      <td>-4.114828e+09</td>
-      <td>...</td>
-      <td>-4.055817e+09</td>
-      <td>-1.021556e+09</td>
-      <td>-3.735057e+09</td>
-      <td>-1.058295e+09</td>
-      <td>-3.953728e+09</td>
-      <td>-1.044786e+09</td>
-      <td>0.002863</td>
-      <td>0.000626</td>
-      <td>2.046476e+08</td>
-      <td>3.691539e+07</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>0.121407</td>
-      <td>0.012471</td>
-      <td>-4.167725e+09</td>
-      <td>-1.102503e+09</td>
-      <td>NaN</td>
-      <td>4</td>
-      <td>3</td>
-      <td>{'max_features': 4, 'n_estimators': 3}</td>
-      <td>14</td>
-      <td>-3.977065e+09</td>
-      <td>...</td>
-      <td>-4.130935e+09</td>
-      <td>-1.028275e+09</td>
-      <td>-4.095962e+09</td>
-      <td>-1.109621e+09</td>
-      <td>-4.273141e+09</td>
-      <td>-1.170526e+09</td>
-      <td>0.006815</td>
-      <td>0.019035</td>
-      <td>1.353256e+08</td>
-      <td>4.626134e+07</td>
+      <td>-3.130196e+09</td>
+      <td>-5.776964e+08</td>
+      <td>-2.865188e+09</td>
+      <td>-5.716332e+08</td>
+      <td>-3.173856e+09</td>
+      <td>-5.802501e+08</td>
+      <td>0.079333</td>
+      <td>0.005578</td>
+      <td>1.327046e+08</td>
+      <td>7.345821e+06</td>
     </tr>
     <tr>
       <th>16</th>
-      <td>0.115060</td>
-      <td>0.003521</td>
-      <td>-4.177484e+09</td>
+      <td>0.253212</td>
+      <td>0.007124</td>
+      <td>-3.305171e+09</td>
       <td>0.000000e+00</td>
       <td>False</td>
       <td>4</td>
       <td>3</td>
-      <td>{'max_features': 4, 'bootstrap': False, 'n_est...</td>
-      <td>15</td>
-      <td>-4.195364e+09</td>
+      <td>{'n_estimators': 3, 'max_features': 4, 'bootst...</td>
+      <td>12</td>
+      <td>-3.134040e+09</td>
       <td>...</td>
-      <td>-4.001127e+09</td>
+      <td>-3.440422e+09</td>
       <td>-0.000000e+00</td>
-      <td>-4.519711e+09</td>
+      <td>-3.053647e+09</td>
       <td>-0.000000e+00</td>
-      <td>-4.196554e+09</td>
+      <td>-3.338344e+09</td>
       <td>-0.000000e+00</td>
-      <td>0.007666</td>
-      <td>0.000747</td>
-      <td>1.948401e+08</td>
+      <td>0.097383</td>
+      <td>0.000550</td>
+      <td>1.879203e+08</td>
       <td>0.000000e+00</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>0.280610</td>
+      <td>0.006559</td>
+      <td>-3.348851e+09</td>
+      <td>-8.883545e+08</td>
+      <td>NaN</td>
+      <td>8</td>
+      <td>3</td>
+      <td>{'n_estimators': 3, 'max_features': 8}</td>
+      <td>13</td>
+      <td>-3.353504e+09</td>
+      <td>...</td>
+      <td>-3.402843e+09</td>
+      <td>-8.603321e+08</td>
+      <td>-3.129307e+09</td>
+      <td>-8.881964e+08</td>
+      <td>-3.510047e+09</td>
+      <td>-9.151287e+08</td>
+      <td>0.043096</td>
+      <td>0.000172</td>
+      <td>1.241864e+08</td>
+      <td>2.750227e+07</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>0.129712</td>
+      <td>0.006625</td>
+      <td>-3.441447e+09</td>
+      <td>-9.023976e+08</td>
+      <td>NaN</td>
+      <td>6</td>
+      <td>3</td>
+      <td>{'n_estimators': 3, 'max_features': 6}</td>
+      <td>14</td>
+      <td>-3.119657e+09</td>
+      <td>...</td>
+      <td>-3.592772e+09</td>
+      <td>-9.353135e+08</td>
+      <td>-3.328934e+09</td>
+      <td>-9.009801e+08</td>
+      <td>-3.579607e+09</td>
+      <td>-8.624664e+08</td>
+      <td>0.020992</td>
+      <td>0.000224</td>
+      <td>1.893141e+08</td>
+      <td>2.591445e+07</td>
     </tr>
     <tr>
       <th>14</th>
-      <td>0.121400</td>
-      <td>0.007090</td>
-      <td>-4.264561e+09</td>
-      <td>0.000000e+00</td>
+      <td>0.216452</td>
+      <td>0.007962</td>
+      <td>-3.536728e+09</td>
+      <td>-1.214568e+01</td>
       <td>False</td>
       <td>3</td>
       <td>3</td>
-      <td>{'max_features': 3, 'bootstrap': False, 'n_est...</td>
-      <td>16</td>
-      <td>-4.474464e+09</td>
+      <td>{'n_estimators': 3, 'max_features': 3, 'bootst...</td>
+      <td>15</td>
+      <td>-3.618324e+09</td>
       <td>...</td>
-      <td>-4.020860e+09</td>
+      <td>-3.554815e+09</td>
       <td>-0.000000e+00</td>
-      <td>-3.947405e+09</td>
+      <td>-3.619116e+09</td>
       <td>-0.000000e+00</td>
-      <td>-4.383979e+09</td>
-      <td>-0.000000e+00</td>
-      <td>0.012864</td>
-      <td>0.006904</td>
-      <td>2.331474e+08</td>
-      <td>0.000000e+00</td>
+      <td>-3.449864e+09</td>
+      <td>-6.072840e+01</td>
+      <td>0.081226</td>
+      <td>0.000395</td>
+      <td>7.795196e+07</td>
+      <td>2.429136e+01</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.143291</td>
+      <td>0.007133</td>
+      <td>-3.716852e+09</td>
+      <td>-9.848396e+08</td>
+      <td>NaN</td>
+      <td>4</td>
+      <td>3</td>
+      <td>{'n_estimators': 3, 'max_features': 4}</td>
+      <td>16</td>
+      <td>-3.730181e+09</td>
+      <td>...</td>
+      <td>-3.734515e+09</td>
+      <td>-9.169425e+08</td>
+      <td>-3.418747e+09</td>
+      <td>-1.037400e+09</td>
+      <td>-3.913907e+09</td>
+      <td>-9.707739e+08</td>
+      <td>0.027455</td>
+      <td>0.001225</td>
+      <td>1.631421e+08</td>
+      <td>4.084607e+07</td>
     </tr>
     <tr>
       <th>12</th>
-      <td>0.122633</td>
-      <td>0.005643</td>
-      <td>-4.762668e+09</td>
+      <td>0.137781</td>
+      <td>0.007999</td>
+      <td>-3.955792e+09</td>
       <td>0.000000e+00</td>
       <td>False</td>
       <td>2</td>
       <td>3</td>
-      <td>{'max_features': 2, 'bootstrap': False, 'n_est...</td>
+      <td>{'n_estimators': 3, 'max_features': 2, 'bootst...</td>
       <td>17</td>
-      <td>-4.518863e+09</td>
+      <td>-3.785816e+09</td>
       <td>...</td>
-      <td>-5.146219e+09</td>
+      <td>-4.061751e+09</td>
       <td>-0.000000e+00</td>
-      <td>-4.731190e+09</td>
+      <td>-3.675704e+09</td>
       <td>-0.000000e+00</td>
-      <td>-5.024536e+09</td>
+      <td>-4.089667e+09</td>
       <td>-0.000000e+00</td>
-      <td>0.009103</td>
-      <td>0.004694</td>
-      <td>2.874120e+08</td>
+      <td>0.022286</td>
+      <td>0.000159</td>
+      <td>1.900966e+08</td>
       <td>0.000000e+00</td>
     </tr>
     <tr>
       <th>0</th>
-      <td>0.121634</td>
-      <td>0.004939</td>
-      <td>-4.901121e+09</td>
-      <td>-1.239179e+09</td>
+      <td>0.177232</td>
+      <td>0.007945</td>
+      <td>-4.053749e+09</td>
+      <td>-1.105559e+09</td>
       <td>NaN</td>
       <td>2</td>
       <td>3</td>
-      <td>{'max_features': 2, 'n_estimators': 3}</td>
+      <td>{'n_estimators': 3, 'max_features': 2}</td>
       <td>18</td>
-      <td>-4.544673e+09</td>
+      <td>-3.837622e+09</td>
       <td>...</td>
-      <td>-5.486429e+09</td>
-      <td>-1.268747e+09</td>
-      <td>-4.999761e+09</td>
-      <td>-1.215228e+09</td>
-      <td>-4.342975e+09</td>
-      <td>-1.153578e+09</td>
-      <td>0.006190</td>
-      <td>0.001444</td>
-      <td>4.108186e+08</td>
-      <td>5.607227e+07</td>
+      <td>-4.196408e+09</td>
+      <td>-1.116550e+09</td>
+      <td>-3.903319e+09</td>
+      <td>-1.112342e+09</td>
+      <td>-4.184325e+09</td>
+      <td>-1.129650e+09</td>
+      <td>0.034350</td>
+      <td>0.001114</td>
+      <td>1.519609e+08</td>
+      <td>2.220402e+07</td>
     </tr>
   </tbody>
 </table>
@@ -4252,10 +4262,10 @@ The best hyperparameter combination found: {&#39;max_features&#39;: 8, &#39;n_es
 </div></div>
 </div>
 </div>
-<div class="section" id="Randomized-Solution">
-<h3>Randomized Solution<a class="headerlink" href="#Randomized-Solution" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="Randomized-Search">
+<h3>Randomized Search<a class="headerlink" href="#Randomized-Search" title="Permalink to this headline">¶</a></h3>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[93]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[270]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -4275,7 +4285,7 @@ The best hyperparameter combination found: {&#39;max_features&#39;: 8, &#39;n_es
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[93]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[270]:
 </pre></div>
 </div>
 <div class="output_area highlight-none notranslate"><div class="highlight"><pre>
@@ -4287,7 +4297,7 @@ The best hyperparameter combination found: {&#39;max_features&#39;: 8, &#39;n_es
            min_weight_fraction_leaf=0.0, n_estimators=&#39;warn&#39;, n_jobs=None,
            oob_score=False, random_state=42, verbose=0, warm_start=False),
           fit_params=None, iid=&#39;warn&#39;, n_iter=10, n_jobs=-1,
-          param_distributions={&#39;max_features&#39;: &lt;scipy.stats._distn_infrastructure.rv_frozen object at 0x1a178c97f0&gt;, &#39;n_estimators&#39;: &lt;scipy.stats._distn_infrastructure.rv_frozen object at 0x1a178c93c8&gt;},
+          param_distributions={&#39;n_estimators&#39;: &lt;scipy.stats._distn_infrastructure.rv_frozen object at 0x1a1f6500f0&gt;, &#39;max_features&#39;: &lt;scipy.stats._distn_infrastructure.rv_frozen object at 0x1a1f6503c8&gt;},
           pre_dispatch=&#39;2*n_jobs&#39;, random_state=42, refit=True,
           return_train_score=&#39;warn&#39;, scoring=&#39;neg_mean_squared_error&#39;,
           verbose=0)
@@ -4295,10 +4305,10 @@ The best hyperparameter combination found: {&#39;max_features&#39;: 8, &#39;n_es
 </div>
 </div>
 </div>
-<div class="section" id="results">
-<h3>results<a class="headerlink" href="#results" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="Randomized-Search-Results">
+<h3>Randomized Search Results<a class="headerlink" href="#Randomized-Search-Results" title="Permalink to this headline">¶</a></h3>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[94]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[271]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -4313,20 +4323,20 @@ The best hyperparameter combination found: {&#39;max_features&#39;: 8, &#39;n_es
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-52933.48550666898 {&#39;max_features&#39;: 7, &#39;n_estimators&#39;: 180}
-55373.89657762311 {&#39;max_features&#39;: 5, &#39;n_estimators&#39;: 15}
-54191.968835449145 {&#39;max_features&#39;: 3, &#39;n_estimators&#39;: 72}
-54851.48225434205 {&#39;max_features&#39;: 5, &#39;n_estimators&#39;: 21}
-53043.33787586482 {&#39;max_features&#39;: 7, &#39;n_estimators&#39;: 122}
-54203.72048982251 {&#39;max_features&#39;: 3, &#39;n_estimators&#39;: 75}
-53986.48278369907 {&#39;max_features&#39;: 3, &#39;n_estimators&#39;: 88}
-52986.37755832063 {&#39;max_features&#39;: 5, &#39;n_estimators&#39;: 100}
-53782.58952411186 {&#39;max_features&#39;: 3, &#39;n_estimators&#39;: 150}
-71602.79629507865 {&#39;max_features&#39;: 5, &#39;n_estimators&#39;: 2}
+49150.657232934034 {&#39;n_estimators&#39;: 180, &#39;max_features&#39;: 7}
+51389.85295710133 {&#39;n_estimators&#39;: 15, &#39;max_features&#39;: 5}
+50796.12045980556 {&#39;n_estimators&#39;: 72, &#39;max_features&#39;: 3}
+50835.09932039744 {&#39;n_estimators&#39;: 21, &#39;max_features&#39;: 5}
+49280.90117886215 {&#39;n_estimators&#39;: 122, &#39;max_features&#39;: 7}
+50774.86679035961 {&#39;n_estimators&#39;: 75, &#39;max_features&#39;: 3}
+50682.75001237282 {&#39;n_estimators&#39;: 88, &#39;max_features&#39;: 3}
+49608.94061293652 {&#39;n_estimators&#39;: 100, &#39;max_features&#39;: 5}
+50473.57642831875 {&#39;n_estimators&#39;: 150, &#39;max_features&#39;: 3}
+64429.763804893395 {&#39;n_estimators&#39;: 2, &#39;max_features&#39;: 5}
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[95]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[272]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -4339,14 +4349,14 @@ The best hyperparameter combination found: {&#39;max_features&#39;: 8, &#39;n_es
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-The best hyperparameter combination found: {&#39;max_features&#39;: 7, &#39;n_estimators&#39;: 180}
+The best hyperparameter combination found: {&#39;n_estimators&#39;: 180, &#39;max_features&#39;: 7}
 </pre></div></div>
 </div>
 </div>
-<div class="section" id="feature-importance">
-<h3>feature importance<a class="headerlink" href="#feature-importance" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="Feature-Importance">
+<h3>Feature Importance<a class="headerlink" href="#Feature-Importance" title="Permalink to this headline">¶</a></h3>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[96]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[273]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -4356,19 +4366,19 @@ The best hyperparameter combination found: {&#39;max_features&#39;: 7, &#39;n_es
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[96]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[273]:
 </pre></div>
 </div>
 <div class="output_area highlight-none notranslate"><div class="highlight"><pre>
-<span></span>array([0.0551887 , 0.05097143, 0.04255885, 0.01743378, 0.01609399,
-       0.01757076, 0.01561372, 0.37202085, 0.05601396, 0.10817195,
-       0.06566939, 0.00677832, 0.16861351, 0.00045692, 0.00142688,
-       0.005417  ])
+<span></span>array([7.33442355e-02, 6.29090705e-02, 4.11437985e-02, 1.46726854e-02,
+       1.41064835e-02, 1.48742809e-02, 1.42575993e-02, 3.66158981e-01,
+       5.64191792e-02, 1.08792957e-01, 5.33510773e-02, 1.03114883e-02,
+       1.64780994e-01, 6.02803867e-05, 1.96041560e-03, 2.85647464e-03])
 </pre></div>
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[97]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[274]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -4377,33 +4387,111 @@ The best hyperparameter combination found: {&#39;max_features&#39;: 7, &#39;n_es
 <span class="n">cat_encoder</span> <span class="o">=</span> <span class="n">full_pipeline</span><span class="o">.</span><span class="n">named_transformers_</span><span class="p">[</span><span class="s2">&quot;cat&quot;</span><span class="p">]</span>
 <span class="n">cat_one_hot_attribs</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">cat_encoder</span><span class="o">.</span><span class="n">categories_</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 <span class="n">attributes</span> <span class="o">=</span> <span class="n">num_attribs</span> <span class="o">+</span> <span class="n">extra_attribs</span> <span class="o">+</span> <span class="n">cat_one_hot_attribs</span>
-<span class="nb">sorted</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">feature_importances</span><span class="p">,</span> <span class="n">attributes</span><span class="p">),</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="c1"># sort features in df</span>
+<span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;feature_importances&#39;</span><span class="p">:</span> <span class="n">feature_importances</span><span class="p">,</span> <span class="s1">&#39;attributes&#39;</span><span class="p">:</span> <span class="n">attributes</span><span class="p">})</span>
+ <span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;attributes&#39;</span><span class="p">)</span>
+ <span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;feature_importances&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[97]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[274]:
 </pre></div>
 </div>
-<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
-<span></span>[(0.3720208508757752, &#39;median_income&#39;),
- (0.16861351152340925, &#39;INLAND&#39;),
- (0.10817194627215071, &#39;pop_per_hhold&#39;),
- (0.06566938960629133, &#39;bedrooms_per_room&#39;),
- (0.05601395528029696, &#39;rooms_per_hhold&#39;),
- (0.05518870083939731, &#39;longitude&#39;),
- (0.05097142871052785, &#39;latitude&#39;),
- (0.0425588492779148, &#39;housing_median_age&#39;),
- (0.017570760630380804, &#39;population&#39;),
- (0.017433782468558267, &#39;total_rooms&#39;),
- (0.016093994139981548, &#39;total_bedrooms&#39;),
- (0.015613715863046924, &#39;households&#39;),
- (0.0067783179241661185, &#39;&lt;1H OCEAN&#39;),
- (0.005416997669485698, &#39;NEAR OCEAN&#39;),
- (0.001426876117779899, &#39;NEAR BAY&#39;),
- (0.00045692280083734773, &#39;ISLAND&#39;)]
-</pre></div>
-</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>feature_importances</th>
+    </tr>
+    <tr>
+      <th>attributes</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>median_income</th>
+      <td>0.366159</td>
+    </tr>
+    <tr>
+      <th>INLAND</th>
+      <td>0.164781</td>
+    </tr>
+    <tr>
+      <th>pop_per_hhold</th>
+      <td>0.108793</td>
+    </tr>
+    <tr>
+      <th>longitude</th>
+      <td>0.073344</td>
+    </tr>
+    <tr>
+      <th>latitude</th>
+      <td>0.062909</td>
+    </tr>
+    <tr>
+      <th>rooms_per_hhold</th>
+      <td>0.056419</td>
+    </tr>
+    <tr>
+      <th>bedrooms_per_room</th>
+      <td>0.053351</td>
+    </tr>
+    <tr>
+      <th>housing_median_age</th>
+      <td>0.041144</td>
+    </tr>
+    <tr>
+      <th>population</th>
+      <td>0.014874</td>
+    </tr>
+    <tr>
+      <th>total_rooms</th>
+      <td>0.014673</td>
+    </tr>
+    <tr>
+      <th>households</th>
+      <td>0.014258</td>
+    </tr>
+    <tr>
+      <th>total_bedrooms</th>
+      <td>0.014106</td>
+    </tr>
+    <tr>
+      <th>&lt;1H OCEAN</th>
+      <td>0.010311</td>
+    </tr>
+    <tr>
+      <th>NEAR OCEAN</th>
+      <td>0.002856</td>
+    </tr>
+    <tr>
+      <th>NEAR BAY</th>
+      <td>0.001960</td>
+    </tr>
+    <tr>
+      <th>ISLAND</th>
+      <td>0.000060</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
 </div>
 <p>Median income is the number one predictor on housing prices. Using the information above we can decide to drop certain features.</p>
 </div>
@@ -4411,7 +4499,7 @@ The best hyperparameter combination found: {&#39;max_features&#39;: 7, &#39;n_es
 <div class="section" id="Evaluate-Test-data">
 <h2>Evaluate Test data<a class="headerlink" href="#Evaluate-Test-data" title="Permalink to this headline">¶</a></h2>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[98]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[275]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -4428,8 +4516,17 @@ The best hyperparameter combination found: {&#39;max_features&#39;: 7, &#39;n_es
 </pre></div>
 </div>
 </div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">final_model</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test_prepared</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[99]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[277]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -4438,20 +4535,21 @@ The best hyperparameter combination found: {&#39;max_features&#39;: 7, &#39;n_es
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[99]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[277]:
 </pre></div>
 </div>
 <div class="output_area highlight-none notranslate"><div class="highlight"><pre>
-<span></span>20387.03184603207
+<span></span>47730.22690385927
 </pre></div>
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[100]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[278]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;prediction </span><span class="se">\t</span><span class="s1"> actual </span><span class="se">\t\t</span><span class="s1"> error&#39;</span><span class="p">)</span>
+<span></span><span class="c1"># print percent error for subset of data</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;prediction </span><span class="se">\t</span><span class="s1"> actual </span><span class="se">\t\t</span><span class="s1"> error&#39;</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">pred</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">final_predictions</span><span class="p">[:</span><span class="mi">15</span><span class="p">],</span><span class="n">y_test</span><span class="p">[:</span><span class="mi">15</span><span class="p">]):</span>
     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1"> </span><span class="se">\t\t</span><span class="s1"> </span><span class="si">{}</span><span class="s1"> </span><span class="se">\t\t</span><span class="s1"> </span><span class="si">{:.0%}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">pred</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">value</span><span class="p">),</span> <span class="p">(</span><span class="n">pred</span><span class="o">-</span><span class="n">value</span><span class="p">)</span><span class="o">/</span><span class="n">value</span><span class="p">))</span>
 </pre></div>
@@ -4463,25 +4561,25 @@ The best hyperparameter combination found: {&#39;max_features&#39;: 7, &#39;n_es
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 prediction       actual                  error
-483240           500001                  -3%
-246183           240300                  2%
-216113           218200                  -1%
-178006           182100                  -2%
-131043           121300                  8%
-127520           120600                  6%
-72466            72300           0%
-476634           500001                  -5%
-104123           98900           5%
-92756            82600           12%
-373733           399400                  -6%
-77103            78600           -2%
-242603           212500                  14%
-186693           174100                  7%
-237830           258100                  -8%
+495467           500001                  -1%
+262676           240300                  9%
+235380           218200                  8%
+211883           182100                  16%
+135516           121300                  12%
+147776           120600                  23%
+63540            72300           -12%
+439026           500001                  -12%
+106323           98900           8%
+100293           82600           21%
+369053           399400                  -8%
+81756            78600           4%
+279346           212500                  31%
+205150           174100                  18%
+221203           258100                  -14%
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[101]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[279]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -4492,11 +4590,20 @@ prediction       actual                  error
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[101]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[279]:
 </pre></div>
 </div>
 <div class="output_area highlight-none notranslate"><div class="highlight"><pre>
-<span></span>7
+<span></span>18
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>
 </pre></div>
 </div>
 </div>
