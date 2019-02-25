@@ -1,4 +1,4 @@
-california_housing_prices
+California Housing Prices README
 ==============================
 
 predict median house values in Californian districts
