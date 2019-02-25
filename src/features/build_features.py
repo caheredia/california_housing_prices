@@ -61,3 +61,28 @@ def add_extra_features(X, add_bedrooms_per_room=True):
                      bedrooms_per_room]
     else:
         return np.c_[X, rooms_per_household, population_per_household]
+
+def save(items, location='data/processed/'):
+    """
+    Saves the variables in items to pickles. 
+
+    Prints the variable name and save location
+
+    Parameters
+    ----------
+    items : list
+       strings of variable names 
+    location : string (optional)
+        directory location for save 
+
+
+    Returns
+    -------
+    None
+    """
+    for item in items:
+        # full save name
+        filename = location + item + '.pkl'
+        # save to pickle
+        joblib.dump(eval(item), filename)
+        print(filename)
