@@ -5,8 +5,6 @@ from sklearn.preprocessing import OneHotEncoder
 from sklearn.preprocessing import FunctionTransformer
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler
-from sklearn.externals import joblib
-
 
 
 # get the right column indices: safer than hard-coding indices 3, 4, 5, 6
@@ -63,4 +61,3 @@ def add_extra_features(X, add_bedrooms_per_room=True):
                      bedrooms_per_room]
     else:
         return np.c_[X, rooms_per_household, population_per_household]
-
