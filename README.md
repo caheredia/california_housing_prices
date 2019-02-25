@@ -45,5 +45,5 @@ Project Organization
         │   └── train_model.py
         │   └── cost_estimator.py
         │
-        └── visualization  <- Scripts to create exploratory and results oriented visualizations
+        ├── visualization  <- Scripts to create exploratory and results oriented visualizations
             └── visualize.py
