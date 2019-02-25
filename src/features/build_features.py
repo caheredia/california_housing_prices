@@ -9,6 +9,23 @@ from sklearn.preprocessing import StandardScaler
 
 # get the right column indices: safer than hard-coding indices 3, 4, 5, 6
 def get_indices(filename='data/raw/housing.csv'):
+    """
+    Retrieves incdices from selected columns. 
+
+    Function loads the first row csv, then converts labels to list. 
+    Finally retreives column index from name. 
+
+    Parameters
+    ----------
+    filename : string (optional) 
+        data location 
+
+    Returns
+    -------
+    list
+        list with indices
+
+    """
     data = pd.read_csv(filename, nrows=0)
     columns = list(data)
     return [columns.index(col) for col in ("total_rooms", "total_bedrooms", "population", "households")]
