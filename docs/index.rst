@@ -32,8 +32,8 @@ Jupyter notebook contents:
 .. toctree::
    :maxdepth: 2
 
-    0.2-ch_streamlined_workflow.ipynb
-    0.1-ch_data_exploration.ipynb
+   0.2-ch_streamlined_workflow.ipynb
+   0.1-ch_data_exploration.ipynb
 
 Indices and tables
 ==================
