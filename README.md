@@ -1,7 +1,12 @@
 California Housing Prices README
 ==============================
 
-predict median house values in Californian districts
+This projects predicts median house values in Californian districts. The median house prices are derived from the 1990 census.
+
+Data Publishers
+------------
+- https://catalog.data.gov/dataset/crimes-2001-to-present-398a4
+- https://data.cityofchicago.org/Public-Safety/Crimes-2001-to-present-Map/c4ep-ee5m
 
 Project Organization
 ------------
