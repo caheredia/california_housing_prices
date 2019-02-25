@@ -7,7 +7,7 @@ This commands can be ran instead of using notebooks.
 Model scripts
 ^^^^^^^^^^^^^^^^^^
 
-* `make data` will use src.data.make_dataset module to load raw data and create stratified splits. 
-* `make train` will use src.models.train_model to train on processed data and save serialized model. 
-* `make predict` will use src.models.train_model to train on processed data and save serialized model. 
-* `make estimate` will use src.models.train_model to train on processed data and save serialized model. 
+* *make data* will use `src.data.make_dataset` module to load raw data and create stratified splits. 
+* *make trai* will use `src.models.train_model` to train on processed data and save serialized model. 
+* *make predic* will use `src.models.train_model` to train on processed data and save serialized model. 
+* *make estimat* will use `src.models.train_model` to train on processed data and save serialized model. 

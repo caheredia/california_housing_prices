@@ -27,16 +27,7 @@ Contents:
    modules
    
 
-Streamlined Analysis
-====================
-Jupyter notebook contents:
-
-.. toctree::
-   :maxdepth: 2
-
-   0.2-ch_streamlined_workflow.ipynb
-
-In depth Analysis
+Analysis
 ====================
 Jupyter notebook contents:
 
