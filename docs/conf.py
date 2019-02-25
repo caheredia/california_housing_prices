@@ -33,7 +33,7 @@ extensions = ['sphinx.ext.napoleon', 'sphinx.ext.autodoc', 'sphinx.ext.autosumma
               'sphinx.ext.viewcode', 'nbsphinx', 'sphinx.ext.mathjax', 'sphinx.ext.githubpages']
 
 # Include Python objects as they appear in source files
-## Default: alphabetically ('alphabetical')
+# Default: alphabetically ('alphabetical')
 autodoc_member_order = 'bysource'
 # Default flags used by autodoc directives
 autodoc_default_flags = ['members', 'show-inheritance']
@@ -108,7 +108,7 @@ pygments_style = 'sphinx'
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
-html_theme = 'default'
+html_theme = 'sphinx_rtd_theme'
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
