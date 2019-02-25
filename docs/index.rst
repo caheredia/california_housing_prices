@@ -24,6 +24,7 @@ Contents:
 
    README
    modules
+   commands
 
 Analysis
 ====================
