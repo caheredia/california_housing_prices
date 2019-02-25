@@ -32,11 +32,24 @@ from recommonmark.transform import AutoStructify
 extensions = ['sphinx.ext.napoleon', 'sphinx.ext.autodoc', 'sphinx.ext.autosummary',
               'sphinx.ext.viewcode', 'nbsphinx', 'sphinx.ext.mathjax', 'sphinx.ext.githubpages']
 
+# Include Python objects as they appear in source files
+## Default: alphabetically ('alphabetical')
+autodoc_member_order = 'bysource'
+# Default flags used by autodoc directives
+autodoc_default_flags = ['members', 'show-inheritance']
+# Generate autodoc stubs with summaries from code
+autosummary_generate = True
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
 
+# Markdown parser
+source_parsers = {
+    '.md': CommonMarkParser
+}
+
+
 # The suffix of source filenames.
-source_suffix = '.rst'
+source_suffix = ['.rst', '.md']
 
 # The encoding of source files.
 # source_encoding = 'utf-8-sig'
