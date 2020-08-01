@@ -1,0 +1,10 @@
+version: "3"
+services:
+  miniconda:
+    build: . 
+    container_name: "miniconda"
+    volumes:
+      - .:/code
+    working_dir: /code
+    command: /bin/bash -c "tail -f /dev/null"
+    entrypoint: ""

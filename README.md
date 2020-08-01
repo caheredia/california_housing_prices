@@ -1,6 +1,7 @@
 California Housing Prices README
 ==============================
-
+# TODO add section to run notebook
+- https://docs.anaconda.com/anaconda/user-guide/tasks/docker/
 This projects predicts median house values in Californian districts. The median house prices are derived from the 1990 census.
 
 See report and documentation [here](https://caheredia.github.io/california_housing_prices/build/html/index.html)
