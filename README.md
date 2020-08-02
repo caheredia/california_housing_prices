@@ -11,6 +11,8 @@ Data Publishers
 ------------
 - http://www.dcc.fc.up.pt/~ltorgo/Regression/cal_housing.html
 
+# References
+[conda env](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#sharing-an-environment)
 
 Project Organization
 ------------
