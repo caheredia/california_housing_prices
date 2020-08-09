@@ -10,3 +10,5 @@ logger.info("making final data set from raw data")
 
 file_name = "data/raw/housing.csv"
 print(file_name)
+
+DATA_DIR = "src/data"
