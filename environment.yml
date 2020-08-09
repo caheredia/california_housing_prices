@@ -1,4 +1,4 @@
-name: base
+name: cal_housing
 channels:
   - defaults
 dependencies:

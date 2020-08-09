@@ -3,6 +3,8 @@ services:
   miniconda:
     build: . 
     container_name: "miniconda"
+    ports:
+      - "2222:22" 
     volumes:
       - .:/code
     working_dir: /code
