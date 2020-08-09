@@ -17,11 +17,18 @@ def load_raw_data_to_df(raw_dir: str = "raw") -> pd.DataFrame:
     """
     Load raw data into pandas DataFrames.
     """
+    # extract columns
+    columns_file = os.path.join(
+        DATA_DIR, raw_dir, "CaliforniaHousing", "cal_housing.domain"
+    )
+    with open(columns_file) as file:
+        lines = file.readlines()
+    columns = [line.split(":")[0] for line in lines]
+
     # load DataFrame
     data_file = os.path.join(DATA_DIR, raw_dir, "CaliforniaHousing", "cal_housing.data")
-    raw_df = pd.read_csv(data_file)
-    # with open("cal_housing.domain") as file:
-    #     lines = file.readlines()
+    raw_df = pd.read_csv(data_file, names=columns)
+
     return raw_df
 
 
@@ -31,6 +38,3 @@ def get_raw_df():
     """
     unpack_tar_file()
     return load_raw_data_to_df()
-
-
-# columns = [line.split(":")[0] for line in lines]
