@@ -1,8 +1,8 @@
 version: "3"
 services:
-  miniconda:
+  cal_housing:
     build: . 
-    container_name: "miniconda"
+    container_name: "cal_housing"
     volumes:
       - .:/code
     working_dir: /code

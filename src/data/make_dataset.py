@@ -1,15 +1,15 @@
 # -*- coding: utf-8 -*-
-from sklearn.model_selection import StratifiedShuffleSplit
-from sklearn.impute import SimpleImputer
-from sklearn.preprocessing import OneHotEncoder
-from sklearn.preprocessing import FunctionTransformer
-from sklearn.pipeline import Pipeline
-from sklearn.preprocessing import StandardScaler
-from sklearn.externals import joblib
-from sklearn.compose import ColumnTransformer
-import pandas as pd
-import numpy as np
 import logging
+
+import numpy as np
+import pandas as pd
+from sklearn.compose import ColumnTransformer
+from sklearn.externals import joblib
+from sklearn.impute import SimpleImputer
+from sklearn.model_selection import StratifiedShuffleSplit
+from sklearn.pipeline import Pipeline
+from sklearn.preprocessing import FunctionTransformer, OneHotEncoder, StandardScaler
+
 from ..features.build_features import add_extra_features
 
 
@@ -18,9 +18,9 @@ def main():
         cleaned data ready to be analyzed (saved in ../processed).
     """
     logger = logging.getLogger(__name__)
-    logger.info('making final data set from raw data')
+    logger.info("making final data set from raw data")
 
-    file_name = 'data/raw/housing.csv'
+    file_name = "data/raw/housing.csv"
     housing_df = pd.read_csv(file_name)
 
     # Create income category
@@ -46,11 +46,13 @@ def main():
 
     # Build pipelines
     # Numerical Pipelines
-    num_pipeline = Pipeline([
-        ('imputer', SimpleImputer(strategy="median")),
-        ('attribs_adder', FunctionTransformer(add_extra_features, validate=False)),
-        ('std_scaler', StandardScaler()),
-    ])
+    num_pipeline = Pipeline(
+        [
+            ("imputer", SimpleImputer(strategy="median")),
+            ("attribs_adder", FunctionTransformer(add_extra_features, validate=False)),
+            ("std_scaler", StandardScaler()),
+        ]
+    )
 
     # Now we can combine both pipelines numerical and categorical into one
     # columns for numerical data
@@ -59,23 +61,22 @@ def main():
     # column for categorical data
     cat_attribs = ["ocean_proximity"]
 
-    full_pipeline = ColumnTransformer([
-        ("num", num_pipeline, num_attribs),
-        ("cat", OneHotEncoder(), cat_attribs),
-    ])
+    full_pipeline = ColumnTransformer(
+        [("num", num_pipeline, num_attribs), ("cat", OneHotEncoder(), cat_attribs),]
+    )
 
     # Transorm data
     housing_prepared = full_pipeline.fit_transform(housing)
 
     # Save the transformed data, test data, and pipeline parameters
-    joblib.dump(full_pipeline, 'models/full_pipeline.pkl')
-    joblib.dump(housing_prepared, 'data/processed/'+'housing_prepared'+'.pkl')
-    joblib.dump(housing_labels, 'data/processed/'+'housing_labels'+'.pkl')
-    joblib.dump(strat_test_set, 'data/processed/'+'strat_test_set'+'.pkl')
+    joblib.dump(full_pipeline, "models/full_pipeline.pkl")
+    joblib.dump(housing_prepared, "data/processed/" + "housing_prepared" + ".pkl")
+    joblib.dump(housing_labels, "data/processed/" + "housing_labels" + ".pkl")
+    joblib.dump(strat_test_set, "data/processed/" + "strat_test_set" + ".pkl")
 
 
-if __name__ == '__main__':
-    log_fmt = '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+if __name__ == "__main__":
+    log_fmt = "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
     logging.basicConfig(level=logging.INFO, format=log_fmt)
 
     main()
