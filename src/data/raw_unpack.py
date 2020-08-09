@@ -18,9 +18,8 @@ def load_raw_data_to_df(raw_dir: str = "raw") -> pd.DataFrame:
     Load raw data into pandas DataFrames.
     """
     # load DataFrame
-    raw_df = pd.DataFrame(
-        os.path.join(DATA_DIR, "CaliforniaHousing", "cal_housing.data")
-    )
+    data_file = os.path.join(DATA_DIR, raw_dir, "CaliforniaHousing", "cal_housing.data")
+    raw_df = pd.read_csv(data_file)
     # with open("cal_housing.domain") as file:
     #     lines = file.readlines()
     return raw_df
